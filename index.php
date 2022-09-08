@@ -31,6 +31,40 @@
     </header>
     <main>
 
+        <div class="container-fluid">
+          <section class="content-header">
+            <h1>
+              calendario
+              <small>panel de control</small>
+            </h1>
+          </section>
+        </div>
+
+        <div class="row">
+          <div class="col-10">
+            <!-- <div class="container"> -->
+              <!-- <div class="col-md-11 offset-md-2"> -->
+                <div id='calendar'></div>
+              <!-- </div> -->
+            <!-- </div> -->
+          </div>
+          <div class="col-2">
+            <div id="external-events" style="margin-bottom:1em; height:350px; border:1px solid #000; overflow:auto; padding:1em">
+              <h4 class="text-center">eventos predefinidos</h4>
+              <div id="listaEventosPredefinidos">
+
+              </div>
+            </div>
+            <hr>
+            <div class="" style="text-align:center">
+              <button type="button" id="botonEventosPredefinidos" class="btn btn-success">
+                administrar eventos predefinidos
+              </button>
+            </div>
+          </div>
+        </div>
+
+
       <!-- definicion del calendario -->
         <div class="container">
             <div class="col-md-11 offset-md-2">
