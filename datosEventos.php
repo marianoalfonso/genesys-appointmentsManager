@@ -7,17 +7,21 @@ require_once("connDB.php");
 $conexion = regresarConexion();
 switch ($_GET['accion']) {
     case 'listar':
-        "select 
-            id, 
-            titulo, 
-            descripcion, 
-            inicio, 
-            fin, 
-            colorTexto,
-            colorFondo
-         from 
-            eventos
-            ";
+        $consulta = "select 
+                        eventos.id,
+                        personas.nombre as title,
+                        description, 
+                        start, 
+                        end, 
+                        textColor,
+                        backgroundColor
+                     from 
+                        eventos inner join personas on
+                        eventos.id_persona = personas.id
+                    ";
+        $datos = mysqli_query($conexion, $consulta);
+        $resultado = mysqli_fetch_all($datos, MYSQLI_ASSOC);
+        echo json_encode($resultado); 
         break;
 
     case 'agregar':

@@ -11,9 +11,9 @@
     <link rel="stylesheet" href="css/bootstrap.min.css" >
     <link rel="stylesheet" href="css/datatables.min.css" >
     <link rel="stylesheet" href="css/bootstrap-clockpicker.css" >
-    <link rel="stylesheet" href="fullCalendar/main.css" >
+    <link rel="stylesheet" href="fullcalendar/main.css" >
 
-     <!-- full calendar -->   
+    <!-- full calendar -->   
     <script src="js/jquery-3.6.1.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -21,6 +21,7 @@
     <script src="js/bootstrap-clockpicker.js"></script>
     <script src="js/moment-with-locales.min.js"></script>
     <script src="fullCalendar/main.js"></script>
+    <script src="fullCalendar/locales-all.min.js"></script>
 
 </head>
 
@@ -30,14 +31,12 @@
     </header>
     <main>
 
-        <!-- <div class="container">
+        <div class="container">
             <div class="col-md-11 offset-md-2">
                 <div id='calendar'></div>
             </div>
-        </div> -->
+        </div>
         
-
-
 
     </main>
     <footer>
@@ -46,10 +45,13 @@
     <!-- Bootstrap JavaScript Libraries -->
 
 
-    <!-- <script>
+    <script>
       document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
+
+          events: 'datosEventos.php?accion=listar',
+
           initialView: 'dayGridMonth',
           locale:"es",
           headerToolbar:{
@@ -60,7 +62,10 @@
         });
         calendar.render();
       });
-    </script> -->
+    </script>
+
+
+
 
 </body>
 
