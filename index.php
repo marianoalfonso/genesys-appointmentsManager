@@ -221,10 +221,9 @@
             //seteamos botones a mostrar
             $('#botonAgregar').hide();
             $('#botonModificar').show();
-            $('#botonBorrar').hide();
+            $('#botonBorrar').show();
+            
             //recuperamos informacion
-
-
             $("#id").val(info.event.id);
             $("#titulo").val(info.event.title);
             //las fechas/horas las recuperamos directamente desde el calendario, no de la DB
@@ -264,9 +263,15 @@
           $('#formularioEventos').modal('hide');
         });
 
+        $('#botonModificar').click(function(){
+          //recuperamos los datos del formulario que previamente los levanto del calendario
+          let registro = recuperarDatosFormulario();
+          modificarRegistro(registro);
+          $('#formularioEventos').modal('hide');
+        })
 
 
-        //funciones ajax
+        //funcion ajax para dar de alta el registro
         function agregarRegistro(registro) {
           $.ajax({
             type: 'POST',
@@ -281,6 +286,23 @@
             }
           })
         }
+
+        //funcion ajax para modificar el registro
+        function modificarRegistro(registro){
+          $.ajax({
+            type: 'POST',
+            url: 'datosEventos.php?accion=modificar',
+            data: registro,
+            success: function(msg){
+              calendar.refetchEvents(); //si se ejecuto el alta, recarga el calendario
+            },
+            error: function(error){
+              console.log(error);
+              // alert('se produjo un error al agregar el evento :' + error);
+            }
+          })
+        }
+
 
         //funciones que interactuan con el formulario de eventos
         function limpiarFormulario(){
