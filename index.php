@@ -186,7 +186,7 @@
     <script>
 
       // //activamos el clockpicker
-      // $('.clockpicker').clockpicker();
+      $('.clockpicker').clockpicker();
 
       document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
