@@ -270,6 +270,12 @@
           $('#formularioEventos').modal('hide');
         })
 
+        $("#botonBorrar").click(function(){
+          //recuperamos los datos del formulario que previamente los levanto del calendario
+          let registro = recuperarDatosFormulario();
+          borrarRegistro(registro);
+          $('#formularioEventos').modal('hide');
+        })
 
         //funcion ajax para dar de alta el registro
         function agregarRegistro(registro) {
@@ -281,8 +287,7 @@
               calendar.refetchEvents(); //si se ejecuto el alta, recarga el calendario
             },
             error: function(error){
-              console.log(error);
-              // alert('se produjo un error al agregar el evento :' + error);
+              alert('se produjo un error al agregar el evento :' + error);
             }
           })
         }
@@ -297,10 +302,24 @@
               calendar.refetchEvents(); //si se ejecuto el alta, recarga el calendario
             },
             error: function(error){
-              console.log(error);
-              // alert('se produjo un error al agregar el evento :' + error);
+              alert('se produjo un error al modificar el evento :' + error);
             }
           })
+        }
+
+        //funcion ajax para borrar el registro
+        function borrarRegistro(registro){
+          $.ajax({
+            type: 'POST',
+            url: 'datosEventos.php?accion=borrar',
+            data: registro,
+            success: function(msg){
+              calendar.refetchEvents(); //si se ejecuto el alta, recarga el calendario
+            },
+            error: function(error){
+              alert('se produjo un error al borrar el evento :' + error);
+            }
+          })         
         }
 
 

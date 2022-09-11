@@ -62,10 +62,12 @@ switch ($_GET['accion']) {
         break;
 
     case 'borrar':
-        "delete from
+        $consulta= "delete from
             eventos
          where
             id = $_POST[id]";
+            $respuesta = mysqli_query($conexion,$consulta);
+            echo json_encode($respuesta);
         break;
 
     default:
