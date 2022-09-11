@@ -2,22 +2,21 @@
 
 // todo lo que devuelve este modulo lo devuelve a traves de json
 header('Content-Type: application/json');
-require_once("connDB.php");
+require("connDB.php");
 
 $conexion = regresarConexion();
 switch ($_GET['accion']) {
     case 'listar':
         $consulta = "select 
-                        eventos.id,
-                        personas.nombre as title,
+                        id,
+                        title,
                         description, 
                         start, 
                         end, 
                         textColor,
                         backgroundColor
                      from 
-                        eventos inner join personas on
-                        eventos.id_persona = personas.id
+                        eventos
                     ";
         $datos = mysqli_query($conexion, $consulta);
         $resultado = mysqli_fetch_all($datos, MYSQLI_ASSOC);
@@ -25,14 +24,14 @@ switch ($_GET['accion']) {
         break;
 
     case 'agregar':
-        "insert into
+        $consulta = "insert into
             eventos (
-                titulo,
-                descripcion,
-                inicio,
-                fin,
-                colorTexto,
-                colorFondo
+                title,
+                description,
+                start,
+                end,
+                textColor,
+                backgroundColor
                 )
             values (
                 '$_POST[titulo]',
@@ -42,6 +41,9 @@ switch ($_GET['accion']) {
                 '$_POST[colorTexto]',
                 '$_POST[colorFondo]'
                 )";
+
+        $respuesta = mysqli_query($conexion, $consulta);
+        echo json_encode($respuesta);
         break;
             
     case 'modificar':

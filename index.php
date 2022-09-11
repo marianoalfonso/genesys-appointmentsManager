@@ -53,6 +53,22 @@
               <h4 class="text-center">eventos predefinidos</h4>
               <div id="listaEventosPredefinidos">
 
+              <?php
+                require_once('connDB.php');
+                $conexion = regresarConexion();
+                
+                $consulta = "select id,titulo,horaInicio,horaFin,colorTexto,colorFondo from eventospredefinidos";
+                $datos = mysqli_query($conexion,$consulta);
+                $ep = mysqli_fetch_all($datos, MYSQLI_ASSOC);
+                foreach($ep as $fila){
+                  echo"<div class='fc-event' data-titulo='$fila[titulo]' data-horaInicio='$fila[horaInicio]' data-horaFin='$fila[horaFin]' data-colorFondo='$fila[colorFondo]' data-colorTexto='$fila[colorTexto]'
+                  style='border-color:$fila[colorFondo]; color:$fila[colorTexto]; background-color:$fila[colorFondo]; margin:10px'>
+                    $fila[titulo] [" . substr($fila['horaInicio'],0,5) . " a " .substr($fila['horaFin'],0,5) . "]</div>";
+                }
+              ?>
+
+
+
               </div>
             </div>
             <hr>
@@ -160,12 +176,18 @@
 
     </main>
     <footer>
-        <!-- place footer here -->
+   
+
+
     </footer>
     <!-- Bootstrap JavaScript Libraries -->
 
 
     <script>
+
+      // //activamos el clockpicker
+      // $('.clockpicker').clockpicker();
+
       document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -173,9 +195,55 @@
           events: 'datosEventos.php?accion=listar',
           dateClick: function(info){ //detecta click en la casilla del calendario
             // recuperamos la informacion del dia que seleccionamos
-            // alert(info.dateStr);
+            // alert(info.dateStr); 
+            limpiarFormulario();
+            // $('#botonAgregar').show();
+            // $('#botonModificar').hide();
+            // $('#botonBorrar').hide();
+
+            //detectar click en un evento o en cualquier parte del dia
+            if (info.allDay) {
+              $('#fechaInicio').val(info.dateStr);  //inserta la fecha que se selecciona en el click
+              $('#fechaFin').val(info.dateStr);
+            } else {
+              let fechaHora = info.dateStr.split("T");
+              $('#fechaInicio').val(fechaHora[0]);
+              $('#fechaFin').val(fechaHora[0]);
+              $('#horaInicio').val(fechaHora[1].substring(0,5));
+              $('#horaFin').val(fechaHora[1].substring(0,5));
+            }
+
             $('#formularioEventos').modal('show');
 
+          },
+          // se ejecuta cuando hacemos click en un evento existente
+          eventClick: function(info){
+            //seteamos botones a mostrar
+            $('#botonAgregar').hide();
+            $('#botonModificar').show();
+            $('#botonBorrar').hide();
+            //recuperamos informacion
+
+
+            $("#id").val(info.event.id);
+            $("#titulo").val(info.event.title);
+            //las fechas/horas las recuperamos directamente desde el calendario, no de la DB
+            $("#fechaInicio").val(moment(info.event.start).format("YYYY-MM-DD"));
+            //el formato para los minutos debe ser minuscula (mm)
+            $("#horaInicio").val(moment(info.event.start).format("HH:mm"));
+            //las fechas las recuperamos directamente desde el calendario, no de la DB
+            $("#fechaFin").val(moment(info.event.end).format("YYYY-MM-DD"));
+            //el formato para los minutos debe ser minuscula (mm)
+            $("#horaFin").val(moment(info.event.end).format("HH:mm"));
+            //extendedProps (porque tiene mas de 1 linea)
+            $("#descripcion").val(info.event.extendedProps.description);  
+            $("#colorFondo").val(info.event.backgroundColor);
+            $("#colorTexto").val(info.event.textColor);
+
+
+
+
+            $('#formularioEventos').modal('show');
           },
 
           initialView: 'dayGridMonth',
@@ -187,7 +255,65 @@
           }
         });
         calendar.render();
+
+        //eventos de botones de la aplicacion
+        // control del evento click sobre el boton AGREGAR
+        $('#botonAgregar').click(function(){
+          let registro = recuperarDatosFormulario();
+          agregarRegistro(registro);
+          $('#formularioEventos').modal('hide');
+        });
+
+
+
+        //funciones ajax
+        function agregarRegistro(registro) {
+          $.ajax({
+            type: 'POST',
+            url: 'datosEventos.php?accion=agregar',
+            data: registro,
+            success: function(msg){
+              calendar.refetchEvents(); //si se ejecuto el alta, recarga el calendario
+            },
+            error: function(error){
+              console.log(error);
+              // alert('se produjo un error al agregar el evento :' + error);
+            }
+          })
+        }
+
+        //funciones que interactuan con el formulario de eventos
+        function limpiarFormulario(){
+          $('#id').val('');
+          $('#titulo').val('');
+          $('#descripcion').val('');
+          $('#fechaInicio').val('');
+          $('#fechaFin').val('');
+          $('#horaInicio').val('');
+          $('#horaFin').val('');
+          $('#colorFondo').val('#3788D8'); 
+          $('#colorTexto').val('#FFFFFF'); 
+          $('#botonAgregar').show();
+          $('#botonModificar').hide();
+          $('#botonBorrar').hide();
+        }
+
+        function recuperarDatosFormulario(){
+          let registro = {
+            id: $('#id').val(),
+            titulo: $('#titulo').val(),
+            descripcion: $('#descripcion').val(),
+            inicio: $('#fechaInicio').val() + ' ' + $('#horaInicio').val(),
+            fin: $('#fechaFin').val() + ' ' + $('#horaFin').val(),
+            colorFondo: $('#colorFondo').val(),
+            colorTexto: $('#colorTexto').val()
+          }
+          return registro;
+        }
+
       });
+
+
     </script>
 
 
