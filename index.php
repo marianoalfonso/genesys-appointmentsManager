@@ -255,6 +255,8 @@
         });
         calendar.render();
 
+
+        //SE EMPAQUETO EN EL ARCHIVO {botones.js}
         //eventos de botones de la aplicacion
         // control del evento click sobre el boton AGREGAR
         $('#botonAgregar').click(function(){
@@ -262,14 +264,14 @@
           agregarRegistro(registro);
           $('#formularioEventos').modal('hide');
         });
-
+        // control del evento click sobre el boton MODIFICAR
         $('#botonModificar').click(function(){
           //recuperamos los datos del formulario que previamente los levanto del calendario
           let registro = recuperarDatosFormulario();
           modificarRegistro(registro);
           $('#formularioEventos').modal('hide');
         })
-
+        // control del evento click sobre el boton BORRAR
         $("#botonBorrar").click(function(){
           //recuperamos los datos del formulario que previamente los levanto del calendario
           let registro = recuperarDatosFormulario();
