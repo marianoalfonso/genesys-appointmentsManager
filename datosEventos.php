@@ -26,6 +26,7 @@ switch ($_GET['accion']) {
     case 'agregar':
         $consulta = "insert into
                         eventos (
+                            dni,
                             title,
                             description,
                             start,
@@ -34,6 +35,7 @@ switch ($_GET['accion']) {
                             backgroundColor
                             )
                         values (
+                            '$_POST[dni]',
                             '$_POST[titulo]',
                             '$_POST[descripcion]',
                             '$_POST[inicio]',

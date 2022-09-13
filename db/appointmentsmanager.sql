@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 08-09-2022 a las 01:33:01
+-- Tiempo de generación: 13-09-2022 a las 09:40:15
 -- Versión del servidor: 8.0.21
 -- Versión de PHP: 7.3.21
 
@@ -30,23 +30,29 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `eventos`;
 CREATE TABLE IF NOT EXISTS `eventos` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `id_persona` int NOT NULL,
-  `title` varchar(255) DEFAULT NULL,
-  `description` text,
+  `dni` int NOT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
   `start` datetime DEFAULT NULL,
   `end` datetime DEFAULT NULL,
-  `textColor` varchar(7) DEFAULT NULL,
-  `backgroundColor` varchar(7) DEFAULT NULL,
+  `textColor` varchar(7) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `backgroundColor` varchar(7) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `eventos`
 --
 
-INSERT INTO `eventos` (`id`, `id_persona`, `title`, `description`, `start`, `end`, `textColor`, `backgroundColor`) VALUES
-(1, 1, 'evento 1', 'descripcion del evento 1', '2022-09-15 20:00:00', '2022-09-15 20:45:00', '#ffffff', '#33ffe3'),
-(2, 2, 'evento 2', 'descripcion del evento 2', '2022-09-07 19:00:00', '2022-09-07 19:45:00', '#ffffff', '#8d33ff');
+INSERT INTO `eventos` (`id`, `dni`, `title`, `description`, `start`, `end`, `textColor`, `backgroundColor`) VALUES
+(7, 0, 'test modificado', 'test', '2022-09-08 20:00:00', '2022-09-08 20:10:00', '#3788d8', '#ffffff'),
+(11, 0, '11223433', '', '2022-09-07 20:00:00', '2022-09-07 20:00:00', '#ffffff', '#3788d8'),
+(15, 0, '21776554', '', '2022-09-02 20:00:00', '2022-09-02 20:10:00', '#ffffff', '#3788d8'),
+(16, 0, '21776554', '', '2022-09-15 20:00:00', '2022-09-15 20:01:00', '#ffffff', '#3788d8'),
+(20, 22925061, 'Alfonso Mariano', 'descripcion', '2022-09-12 21:30:00', '2022-09-12 22:30:00', NULL, NULL),
+(21, 0, '21776554', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '#ffffff', '#3788d8'),
+(22, 0, '21776554', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '#ffffff', '#3788d8'),
+(23, 0, '22925061', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '#ffffff', '#3788d8');
 
 -- --------------------------------------------------------
 
@@ -63,7 +69,15 @@ CREATE TABLE IF NOT EXISTS `eventospredefinidos` (
   `colortexto` varchar(7) DEFAULT NULL,
   `colorfondo` varchar(7) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `eventospredefinidos`
+--
+
+INSERT INTO `eventospredefinidos` (`id`, `titulo`, `horaInicio`, `horaFin`, `colortexto`, `colorfondo`) VALUES
+(1, 'sobreturno', '14:00:00', '15:00:00', '#FFFFFF', '#FF3333'),
+(2, 'turno especial', '12:00:00', '14:00:00', '#FFFFFF', '#00AC22');
 
 -- --------------------------------------------------------
 
@@ -73,18 +87,21 @@ CREATE TABLE IF NOT EXISTS `eventospredefinidos` (
 
 DROP TABLE IF EXISTS `personas`;
 CREATE TABLE IF NOT EXISTS `personas` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3;
+  `dni` int NOT NULL,
+  `apellido` varchar(100) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
+  PRIMARY KEY (`dni`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `personas`
 --
 
-INSERT INTO `personas` (`id`, `nombre`) VALUES
-(1, 'Miguel Timoteo'),
-(2, 'Mariano Alfonso');
+INSERT INTO `personas` (`dni`, `apellido`, `nombre`) VALUES
+(22925061, 'Alfonso', 'Mariano'),
+(16887778, 'Timoteo', 'Miguel'),
+(11223433, 'Perez', 'Daniela'),
+(21776554, 'Brown', 'Meredith');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

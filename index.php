@@ -56,7 +56,6 @@
               <?php
                 require_once('connDB.php');
                 $conexion = regresarConexion();
-                
                 $consulta = "select id,titulo,horaInicio,horaFin,colorTexto,colorFondo from eventospredefinidos";
                 $datos = mysqli_query($conexion,$consulta);
                 $ep = mysqli_fetch_all($datos, MYSQLI_ASSOC);
