@@ -29,10 +29,20 @@
 </head>
 <body>
   <main>
-  <?php include "evento.php"; ?>
+    <?php include "evento.php"; ?>
+    <!-- <?php include "profesionales.php"; ?> -->
+
+
+    <select id="profesional" onchange="cambioProfesional(this.value)">
+      <option value="1" selected>profesional 1</option>
+      <option value="2">profesional 2</option>
+    </select>
+
+
     <!-- definicion del calendario -->
     <div class="container">
-      <div class="col-md-11 offset-md-2">
+      <!-- <div class="col-md-11 offset-md-2"> -->
+      <div class="col-md-12">
           <div id='calendar'></div>
       </div>
     </div>
@@ -46,8 +56,8 @@
     document.addEventListener('DOMContentLoaded', function() {
       var calendarEl = document.getElementById('calendar');
       var calendar = new FullCalendar.Calendar(calendarEl, {
-
-        events: 'datosEventos.php?accion=listar',
+        // events: 'datosEventos.php?accion=listar&profesional=' + $('#profesional').val(),
+        events: 'datosEventos.php?accion=listar&profesional=' + $('#profesional').val(),
         initialView: 'dayGridMonth',
         locale:"es",
         headerToolbar:{
@@ -99,7 +109,7 @@
       });
       calendar.render();
 
-
+      
       //eventos de botones de la aplicacion
       // control del evento click sobre el boton AGREGAR
       $('#botonAgregar').click(function(){
@@ -121,7 +131,6 @@
         borrarRegistro(registro);
         $('#formularioEventos').modal('hide');
       })
-
 
       //funcion ajax para dar de alta el registro
       function agregarRegistro(registro) {
@@ -168,10 +177,6 @@
         })         
       }
 
-
-
-
-
     });
 
     //funciones que interactuan con el formulario de eventos
@@ -194,6 +199,7 @@
     function recuperarDatosFormulario(){
       let registro = {
         id: $('#id').val(),
+        profesional: $('#profesional').val(),
         dni: $('#titulo').val(), //devuelve el value del campo de seleccion, no el texto
         titulo: $('#titulo option:selected').text(), //devuelve el texto del campo de seleccion
         descripcion: $('#descripcion').val(),
@@ -202,14 +208,12 @@
         colorFondo: $('#colorFondo').val(),
         colorTexto: $('#colorTexto').val()
       }
-      console.log(registro.dni);
-      console.log(registro.titulo);
-      console.log(registro.descripcion);
-      console.log(registro.inicio);
-      console.log(registro.fin);
       return registro;
     }
 
+    function cambioProfesional(){
+        alert("se mostrara la agenda para el profesional seleccionado");
+    }
 
 
   </script>

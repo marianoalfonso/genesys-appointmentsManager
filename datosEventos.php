@@ -5,10 +5,12 @@ header('Content-Type: application/json');
 require("connDB.php");
 
 $conexion = regresarConexion();
+
 switch ($_GET['accion']) {
     case 'listar':
         $consulta = "select 
                         id,
+                        profesional,
                         dni,
                         title,
                         description, 
@@ -18,7 +20,9 @@ switch ($_GET['accion']) {
                         backgroundColor
                      from 
                         eventos
-                    ";
+                     where
+                        profesional = $_GET[profesional]";
+
         $datos = mysqli_query($conexion, $consulta);
         $resultado = mysqli_fetch_all($datos, MYSQLI_ASSOC);
         echo json_encode($resultado); 
@@ -27,6 +31,7 @@ switch ($_GET['accion']) {
     case 'agregar':
         $consulta = "insert into
                         eventos (
+                            profesional,
                             dni,
                             title,
                             description,
@@ -36,6 +41,7 @@ switch ($_GET['accion']) {
                             backgroundColor
                             )
                         values (
+                            '$_POST[profesional]',
                             '$_POST[dni]',
                             '$_POST[titulo]',
                             '$_POST[descripcion]',

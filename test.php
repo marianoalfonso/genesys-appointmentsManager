@@ -7,7 +7,8 @@
     <title>Document</title>
 </head>
 <body>
+    
     <?php include "calendario.php"; ?>
-    <?php include "eventosPredefinidos.php"; ?>
+    <!-- <?php include "eventosPredefinidos.php"; ?> -->
 </body>
 </html>
