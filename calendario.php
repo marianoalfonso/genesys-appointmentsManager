@@ -194,14 +194,19 @@
     function recuperarDatosFormulario(){
       let registro = {
         id: $('#id').val(),
-        dni: $('#dni').val(),
-        titulo: $('#titulo').val(),
+        dni: $('#titulo').val(), //devuelve el value del campo de seleccion, no el texto
+        titulo: $('#titulo option:selected').text(), //devuelve el texto del campo de seleccion
         descripcion: $('#descripcion').val(),
         inicio: $('#fechaInicio').val() + ' ' + $('#horaInicio').val(),
         fin: $('#fechaFin').val() + ' ' + $('#horaFin').val(),
         colorFondo: $('#colorFondo').val(),
         colorTexto: $('#colorTexto').val()
       }
+      console.log(registro.dni);
+      console.log(registro.titulo);
+      console.log(registro.descripcion);
+      console.log(registro.inicio);
+      console.log(registro.fin);
       return registro;
     }
 

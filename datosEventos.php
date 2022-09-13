@@ -9,6 +9,7 @@ switch ($_GET['accion']) {
     case 'listar':
         $consulta = "select 
                         id,
+                        dni,
                         title,
                         description, 
                         start, 

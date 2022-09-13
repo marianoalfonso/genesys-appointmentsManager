@@ -31,12 +31,12 @@ DROP TABLE IF EXISTS `eventos`;
 CREATE TABLE IF NOT EXISTS `eventos` (
   `id` int NOT NULL AUTO_INCREMENT,
   `dni` int NOT NULL,
-  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
+  `title` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL,
+  `description` text CHARACTER SET utf8mb4,
   `start` datetime DEFAULT NULL,
   `end` datetime DEFAULT NULL,
-  `textColor` varchar(7) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `backgroundColor` varchar(7) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `textColor` varchar(7) CHARACTER SET utf8mb4 DEFAULT NULL,
+  `backgroundColor` varchar(7) CHARACTER SET utf8mb4 DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
 
@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `personas` (
   `apellido` varchar(100) NOT NULL,
   `nombre` varchar(100) NOT NULL,
   PRIMARY KEY (`dni`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `personas`

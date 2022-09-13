@@ -25,8 +25,8 @@
                 <input type="hidden" id="id">
                 <div class="form-row">
                   <div class="form-group col-md-12">
-                    <!-- <label for="">titulo del evento</label>
-                    <input type="text" id="titulo" class="form-control" placeholder=""> -->
+                    <label for="">seleccione paciente</label>
+                    <!-- <input type="text" id="titulo" class="form-control" placeholder=""> -->
 
                     <!-- cargamos el combo con las personas -->
                     <select id="titulo" class="form-control">
