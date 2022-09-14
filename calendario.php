@@ -29,15 +29,16 @@
 </head>
 <body>
   <main>
+    <?php include "profesionales.php"; ?>
     <?php include "evento.php"; ?>
-    <!-- <?php include "profesionales.php"; ?> -->
 
-
-    <select id="profesional" onchange="cambioProfesional(this.value)">
+    <!-- combo profesionales   -->
+    <!-- <select id="profesional" onchange="cambioProfesional(this.value)">
       <option value="1" selected>profesional 1</option>
       <option value="2">profesional 2</option>
-    </select>
+    </select> -->
 
+    <button id="profesionales">seleccionar profesional</button>
 
     <!-- definicion del calendario -->
     <div class="container">
@@ -56,7 +57,6 @@
     document.addEventListener('DOMContentLoaded', function() {
       var calendarEl = document.getElementById('calendar');
       var calendar = new FullCalendar.Calendar(calendarEl, {
-        // events: 'datosEventos.php?accion=listar&profesional=' + $('#profesional').val(),
         events: 'datosEventos.php?accion=listar&profesional=' + $('#profesional').val(),
         initialView: 'dayGridMonth',
         locale:"es",
@@ -90,7 +90,7 @@
             
             //recuperamos informacion
             $("#id").val(info.event.id);
-            $("#titulo").val(info.event.title);
+            $("#titulo").val(info.event.titulo);
             //las fechas/horas las recuperamos directamente desde el calendario, no de la DB
             $("#fechaInicio").val(moment(info.event.start).format("YYYY-MM-DD"));
             //el formato para los minutos debe ser minuscula (mm)
@@ -109,7 +109,19 @@
       });
       calendar.render();
 
-      
+      // muestra el formulario modal de profesionales
+      $("#profesionales").click(function(){
+        $('#formularioProfesionales').modal('show');
+      })
+
+      // ejecuta el boton cargar agenda
+      $('#cargarAgenda').click(function(){
+        let registro = recuperarProfesional();
+        recuperarAgenda(registro);
+        $('#formularioProfesionales').modal('hide');
+      });
+
+
       //eventos de botones de la aplicacion
       // control del evento click sobre el boton AGREGAR
       $('#botonAgregar').click(function(){
@@ -131,6 +143,21 @@
         borrarRegistro(registro);
         $('#formularioEventos').modal('hide');
       })
+
+      // recupera la agenda en base al profesional seleccionado
+      function recuperarAgenda(registro){
+        $.ajax({
+          type: 'POST',
+          url: 'datosEventos.php?accion=listar',
+          data: registro,
+          success: function(msg){
+            calendar.refetchEvents(); //si se ejecuto el alta, recarga el calendario
+          },
+          error: function(error){
+            alert('se produjo un error al recuperar la agenda del profesional seleccionado:' + error);
+          }
+        })        
+      }
 
       //funcion ajax para dar de alta el registro
       function agregarRegistro(registro) {
@@ -211,8 +238,12 @@
       return registro;
     }
 
-    function cambioProfesional(){
-        alert("se mostrara la agenda para el profesional seleccionado");
+    // obtiene el profesional seleccionado en el modal de profesionales
+    function recuperarProfesional(){
+      let registro = {
+        profesional: $('#profesional').val()
+      }
+      return registro;
     }
 
 

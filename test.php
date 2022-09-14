@@ -9,6 +9,6 @@
 <body>
     
     <?php include "calendario.php"; ?>
-    <!-- <?php include "eventosPredefinidos.php"; ?> -->
+
 </body>
 </html>

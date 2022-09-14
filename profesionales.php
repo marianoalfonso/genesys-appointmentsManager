@@ -8,18 +8,23 @@
 </head>
 <body>
     
-    <form>
-        <select id="profesional" onchange="cambioProfesional(this.value)">
-            <option value="1" selected>profesional 1</option>
-            <option value="2">profesional 2</option>
-        </select>
-    </form>
+<div class="modal fade" id="formularioProfesionales" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <select id="profesional"">
+                <option value="1" selected>profesional 1</option>
+                <option value="2">profesional 2</option>
+                <option value="3">profesional 3</option>
+                <option value="4">profesional 4</option>
+            </select>
+            
+            <div class="modal-footer">
+                <button type="button" id="cargarAgenda" class="btn btn-success">cargar agenda</button>
+            </div>
 
-    <script>
-        function cambioProfesional(){
-            alert("se mostrara la agenda para el profesional seleccionado");
-        }
-    </script>
+        </div>    
+    </div>
+</div>
 
 
 </body>

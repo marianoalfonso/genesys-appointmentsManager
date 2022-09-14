@@ -21,7 +21,7 @@ switch ($_GET['accion']) {
                      from 
                         eventos
                      where
-                        profesional = $_GET[profesional]";
+                        profesional = $_POST[profesional]";
 
         $datos = mysqli_query($conexion, $consulta);
         $resultado = mysqli_fetch_all($datos, MYSQLI_ASSOC);
