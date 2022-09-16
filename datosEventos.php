@@ -8,24 +8,30 @@ $conexion = regresarConexion();
 
 switch ($_GET['accion']) {
     case 'listar':
-        $consulta = "select 
+        $consulta = "select
                         id,
                         profesional,
                         dni,
                         title,
-                        description, 
-                        start, 
-                        end, 
+                        description,
+                        start,
+                        end,
                         textColor,
                         backgroundColor
-                     from 
+                     from
                         eventos
                      where
-                        profesional = $_POST[profesional]";
+                        profesional = $_GET[p]";
+
+        // $texto = "select * from eventos where profesional = 1";
+        // $const = "insert into log (msg) values ($_GET[codigo_profesional])";
+        // mysqli_query($conexion,$const);
+
+        // $consulta = $texto;
 
         $datos = mysqli_query($conexion, $consulta);
         $resultado = mysqli_fetch_all($datos, MYSQLI_ASSOC);
-        echo json_encode($resultado); 
+        echo json_encode($resultado);
         break;
 
     case 'agregar':
@@ -54,10 +60,10 @@ switch ($_GET['accion']) {
         $respuesta = mysqli_query($conexion, $consulta);
         echo json_encode($respuesta);
         break;
-            
+
     case 'modificar':
         $consulta = "update
-                        eventos set 
+                        eventos set
                             title = '$_POST[titulo]',
                             description = '$_POST[descripcion]',
                             start = '$_POST[inicio]',

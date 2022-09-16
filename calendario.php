@@ -54,10 +54,20 @@
     //activamos el clockpicker
     $('.clockpicker').clockpicker();
 
+    var e = document.getElementById("codigoProfesional");
+    var value=e.options[e.selectedIndex].value;// get selected option value
+    var text=e.options[e.selectedIndex].text;
+    // alert('antes de mostrar el calendario: valor->' + value + ' / texto -> ' + text);
+    var consultaListado = 'datosEventos.php?accion=listar&p=' + value;
+    // alert('consultaListado: ' + consultaListado);
+
+
     document.addEventListener('DOMContentLoaded', function() {
+      alert('la funcion DOMContentLoaded recibe consultaListado: ' + consultaListado)
+
       var calendarEl = document.getElementById('calendar');
       var calendar = new FullCalendar.Calendar(calendarEl, {
-        events: 'datosEventos.php?accion=listar&profesional=' + $('#profesional').val(),
+        events: consultaListado,
         initialView: 'dayGridMonth',
         locale:"es",
         headerToolbar:{
@@ -116,8 +126,15 @@
 
       // ejecuta el boton cargar agenda
       $('#cargarAgenda').click(function(){
-        let registro = recuperarProfesional();
-        recuperarAgenda(registro);
+
+        var e = document.getElementById("codigoProfesional");
+        var value=e.options[e.selectedIndex].value;// get selected option value
+        var text=e.options[e.selectedIndex].text;
+        // alert('al cambiar de profesional: valor->' + value + ' / texto -> ' + text);
+        var consultaListado = 'datosEventos.php?accion=listar&p=' + value;
+        // alert('consultaListado: ' + consultaListado);
+
+        recuperarAgenda(consultaListado);
         $('#formularioProfesionales').modal('hide');
       });
 
@@ -145,13 +162,16 @@
       })
 
       // recupera la agenda en base al profesional seleccionado
-      function recuperarAgenda(registro){
+      function recuperarAgenda(consultaListado){
+        alert('la funcion recuperarAgenda recibe consultaListado: ' + consultaListado)
         $.ajax({
           type: 'POST',
-          url: 'datosEventos.php?accion=listar',
-          data: registro,
+          url: consultaListado,
+          data: '',
           success: function(msg){
-            calendar.refetchEvents(); //si se ejecuto el alta, recarga el calendario
+            //si se ejecuto el alta, recarga el calendario
+            alert('funcion SUCCESS');
+            calendar.refetchEvents(); 
           },
           error: function(error){
             alert('se produjo un error al recuperar la agenda del profesional seleccionado:' + error);
@@ -241,7 +261,7 @@
     // obtiene el profesional seleccionado en el modal de profesionales
     function recuperarProfesional(){
       let registro = {
-        profesional: $('#profesional').val()
+        codigo_profesional: $('#codigoProfesional').val()
       }
       return registro;
     }
