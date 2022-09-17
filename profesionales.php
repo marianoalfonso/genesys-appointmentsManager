@@ -52,7 +52,7 @@
                                 </select>
 
                                 <div class="modal-footer">
-                                    <button type="button" id="cargarAgenda" class="btn btn-success">cargar agenda</button>
+                                    <button type="button" id="cargarAgenda" class="btn btn-success" onclick="myFunction()">cargar agenda</button>
                                 </div>
 
                             </div>
@@ -61,6 +61,15 @@
                 </div>
             </div>
         </div>
+
+
+        <script>
+
+            function myFunction(){
+                alert('click seleccionado');
+            }
+
+        </script>
 
 </body>
 </html>

@@ -63,11 +63,12 @@
 
 
     document.addEventListener('DOMContentLoaded', function() {
-      alert('la funcion DOMContentLoaded recibe consultaListado: ' + consultaListado)
+
+      // alert('la funcion DOMContentLoaded recibe consultaListado: ' + consultaListado)
 
       var calendarEl = document.getElementById('calendar');
       var calendar = new FullCalendar.Calendar(calendarEl, {
-        events: consultaListado,
+        events: '',
         initialView: 'dayGridMonth',
         locale:"es",
         headerToolbar:{
@@ -131,10 +132,11 @@
         var value=e.options[e.selectedIndex].value;// get selected option value
         var text=e.options[e.selectedIndex].text;
         // alert('al cambiar de profesional: valor->' + value + ' / texto -> ' + text);
-        var consultaListado = 'datosEventos.php?accion=listar&p=' + value;
+        var consultaListado = 'datosEventos.php?accion=listar&p=' + value + '&start=2022-08-29T00%3A00%3A00-03%3A00&end=2022-10-10T00%3A00%3A00-03%3A00';
         // alert('consultaListado: ' + consultaListado);
 
         recuperarAgenda(consultaListado);
+
         $('#formularioProfesionales').modal('hide');
       });
 
@@ -163,14 +165,16 @@
 
       // recupera la agenda en base al profesional seleccionado
       function recuperarAgenda(consultaListado){
-        alert('la funcion recuperarAgenda recibe consultaListado: ' + consultaListado)
+        // alert('la funcion recuperarAgenda recibe consultaListado: ' + consultaListado)
+        alert('funcion recuperarAgenda');
         $.ajax({
           type: 'POST',
           url: consultaListado,
           data: '',
           success: function(msg){
             //si se ejecuto el alta, recarga el calendario
-            alert('funcion SUCCESS');
+            // alert('funcion SUCCESS');
+
             calendar.refetchEvents(); 
           },
           error: function(error){
