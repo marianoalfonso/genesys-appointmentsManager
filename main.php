@@ -8,8 +8,11 @@
 </head>
 <body>
     
-    <a href="verCalendario?p=1">profesional 1</a><br>
-    <a href="verCalendario?p=2">profesional 2</a>
+    <?php
+        require("connDB.php");
+        require("menu.php");
+
+    ?>
 
 </body>
 </html>

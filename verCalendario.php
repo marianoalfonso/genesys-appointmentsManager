@@ -29,7 +29,6 @@
 </head>
 <body>
 
-    <a href="http://localhost/genesys-appointmentsManager/menu.php#">volver</a>
     <!-- definicion del calendario -->
     <div class="container">
         <!-- <div class="col-md-11 offset-md-2"> -->
