@@ -103,6 +103,8 @@
 
     <script>
 
+        //en el click se dispara esta function
+        //obtiene el idProfesional y arma la url con el parametro $_GET
         function myFunction(){
             var e = document.getElementById("codigoProfesional");
             var value=e.options[e.selectedIndex].value;// get selected option value

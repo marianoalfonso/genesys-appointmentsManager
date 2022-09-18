@@ -63,9 +63,9 @@ body {
 <body>
 
     <div class="topnav">
-    <a class="active" href="#home">inicio</a>
-    <a href="#pacientes">pacientes</a>
-    <a href="profesionales.php">agendas</a>
+        <a class="active" href="#home">inicio</a>
+        <a href="pacientes.php">pacientes</a>
+        <a href="profesionales.php">agendas</a>
     </div>
 
     <?php include "evento.php"; ?>
@@ -92,7 +92,7 @@ body {
                 headerToolbar:{
                 left:'prev,next today',
                 center:'title',
-                right:'dayGridMonth,timeGridWeek,timeGridDay'
+                right:'dayGridMonth,timeGridWeek,timeGridDay',
                 },
                 dateClick: function(info){ //detecta click en la casilla del calendario
                     // recuperamos la informacion del dia que seleccionamos
