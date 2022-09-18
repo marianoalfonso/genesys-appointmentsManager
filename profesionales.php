@@ -59,55 +59,60 @@
     </div>
 </div> -->
 
-      <!-- formulario de eventos -->
+    <!-- formulario de eventos -->
+    <div class="topnav">
+        <a class="active" href="#home">inicio</a>
+        <a href="#pacientes">pacientes</a>
+        <a href="profesionales.php">agendas</a>
+    </div>
 
-        <div class="modal fade" id="formularioProfesionales" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                <!-- cabecera -->
-                    <div class="modal-header">
+    <div class="modal fade" id="formularioProfesionales" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <!-- cabecera -->
+                <div class="modal-header">
 
-                    </div>
-                <!-- cuerpo -->
-                    <div class="modal-body">
-                        <input type="hidden" id="id">
-                        <div class="form-row">
-                            <div class="form-group col-md-12">
-                                <label for="">seleccione profesional</label>
-                                <select id="codigoProfesional" class="form-control">
-                                    <?php
-                                        $mysqli = new mysqli('localhost', 'root', '', 'appointmentsManager');
-                                        $query = $mysqli -> query ("SELECT id,nombre FROM profesionales");
-                                        while ($valores = mysqli_fetch_array($query)) {
-                                            echo '<option value="'.$valores["id"].'">'.$valores["nombre"].'</option>';
-                                        }
-                                    ?>
-                                </select>
+                </div>
+            <!-- cuerpo -->
+                <div class="modal-body">
+                    <input type="hidden" id="id">
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label for="">seleccione profesional</label>
+                            <select id="codigoProfesional" class="form-control">
+                                <?php
+                                    $mysqli = new mysqli('localhost', 'root', '', 'appointmentsManager');
+                                    $query = $mysqli -> query ("SELECT id,nombre FROM profesionales");
+                                    while ($valores = mysqli_fetch_array($query)) {
+                                        echo '<option value="'.$valores["id"].'">'.$valores["nombre"].'</option>';
+                                    }
+                                ?>
+                            </select>
 
-                                <div class="modal-footer">
-                                    <button type="button" id="cargarAgenda" class="btn btn-success" onclick="myFunction()">cargar agenda</button>
-                                </div>
-
+                            <div class="modal-footer">
+                                <button type="button" id="cargarAgenda" class="btn btn-success" onclick="myFunction()">cargar agenda</button>
                             </div>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
 
-        <script>
+    <script>
 
-            function myFunction(){
-                var e = document.getElementById("codigoProfesional");
-                var value=e.options[e.selectedIndex].value;// get selected option value
-                var text=e.options[e.selectedIndex].text;
-                // alert("codigo: " + value + " / texto: " + text);
-                const url = "index.php?p=" + encodeURIComponent(value);
-                window.location.href = url;
-            }
+        function myFunction(){
+            var e = document.getElementById("codigoProfesional");
+            var value=e.options[e.selectedIndex].value;// get selected option value
+            var text=e.options[e.selectedIndex].text;
+            // alert("codigo: " + value + " / texto: " + text);
+            const url = "index.php?p=" + encodeURIComponent(value);
+            window.location.href = url;
+        }
 
-        </script>
+    </script>
 
 </body>
 </html>

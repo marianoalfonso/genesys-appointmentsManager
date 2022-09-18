@@ -120,26 +120,6 @@
       });
       calendar.render();
 
-      // muestra el formulario modal de profesionales
-      $("#profesionales").click(function(){
-        $('#formularioProfesionales').modal('show');
-      })
-
-      // ejecuta el boton cargar agenda
-      $('#cargarAgenda').click(function(){
-
-        var e = document.getElementById("codigoProfesional");
-        var value=e.options[e.selectedIndex].value;// get selected option value
-        var text=e.options[e.selectedIndex].text;
-        // alert('al cambiar de profesional: valor->' + value + ' / texto -> ' + text);
-        var consultaListado = 'datosEventos.php?accion=listar&p=' + value + '&start=2022-08-29T00%3A00%3A00-03%3A00&end=2022-10-10T00%3A00%3A00-03%3A00';
-        // alert('consultaListado: ' + consultaListado);
-
-        recuperarAgenda(consultaListado);
-
-        $('#formularioProfesionales').modal('hide');
-      });
-
 
       //eventos de botones de la aplicacion
       // control del evento click sobre el boton AGREGAR
@@ -163,25 +143,6 @@
         $('#formularioEventos').modal('hide');
       })
 
-      // recupera la agenda en base al profesional seleccionado
-      function recuperarAgenda(consultaListado){
-        // alert('la funcion recuperarAgenda recibe consultaListado: ' + consultaListado)
-        alert('funcion recuperarAgenda');
-        $.ajax({
-          type: 'POST',
-          url: consultaListado,
-          data: '',
-          success: function(msg){
-            //si se ejecuto el alta, recarga el calendario
-            // alert('funcion SUCCESS');
-
-            calendar.refetchEvents(); 
-          },
-          error: function(error){
-            alert('se produjo un error al recuperar la agenda del profesional seleccionado:' + error);
-          }
-        })        
-      }
 
       //funcion ajax para dar de alta el registro
       function agregarRegistro(registro) {

@@ -62,11 +62,14 @@ body {
 </head>
 <body>
 
-<div class="topnav">
-  <a class="active" href="#home">inicio</a>
-  <a href="#pacientes">pacientes</a>
-  <a href="profesionales.php">agendas</a>
-</div>
+    <div class="topnav">
+    <a class="active" href="#home">inicio</a>
+    <a href="#pacientes">pacientes</a>
+    <a href="profesionales.php">agendas</a>
+    </div>
+
+    <?php include "evento.php"; ?>
+    <?php include "eventoInfo.php"; ?>
 
     <!-- definicion del calendario -->
     <div class="container">
@@ -96,14 +99,14 @@ body {
                     limpiarFormulario();
                     //detectar click en un evento o en cualquier parte del dia
                     if (info.allDay) {
-                    $('#fechaInicio').val(info.dateStr);  //inserta la fecha que se selecciona en el click
-                    $('#fechaFin').val(info.dateStr);
+                        $('#fechaInicio').val(info.dateStr);  //inserta la fecha que se selecciona en el click
+                        $('#fechaFin').val(info.dateStr);
                     } else {
-                    let fechaHora = info.dateStr.split("T");
-                    $('#fechaInicio').val(fechaHora[0]);
-                    $('#fechaFin').val(fechaHora[0]);
-                    $('#horaInicio').val(fechaHora[1].substring(0,5));
-                    $('#horaFin').val(fechaHora[1].substring(0,5));
+                        let fechaHora = info.dateStr.split("T");
+                        $('#fechaInicio').val(fechaHora[0]);
+                        $('#fechaFin').val(fechaHora[0]);
+                        $('#horaInicio').val(fechaHora[1].substring(0,5));
+                        $('#horaFin').val(fechaHora[1].substring(0,5));
                     }
                     $('#formularioEventos').modal('show');
                 },
@@ -111,29 +114,123 @@ body {
                 eventClick: function(info){
                     //seteamos botones a mostrar
                     $('#botonAgregar').hide();
-                    $('#botonModificar').show();
                     $('#botonBorrar').show();
                     
                     //recuperamos informacion
                     $("#id").val(info.event.id);
-                    $("#titulo").val(info.event.titulo);
+                    $("#infoTitulo").val(info.event.titulo);
                     //las fechas/horas las recuperamos directamente desde el calendario, no de la DB
-                    $("#fechaInicio").val(moment(info.event.start).format("YYYY-MM-DD"));
+                    $("#infoFechaInicio").val(moment(info.event.start).format("YYYY-MM-DD"));
                     //el formato para los minutos debe ser minuscula (mm)
-                    $("#horaInicio").val(moment(info.event.start).format("HH:mm"));
+                    $("#infoHoraInicio").val(moment(info.event.start).format("HH:mm"));
                     //las fechas las recuperamos directamente desde el calendario, no de la DB
-                    $("#fechaFin").val(moment(info.event.end).format("YYYY-MM-DD"));
+                    $("#infoFechaFin").val(moment(info.event.end).format("YYYY-MM-DD"));
                     //el formato para los minutos debe ser minuscula (mm)
-                    $("#horaFin").val(moment(info.event.end).format("HH:mm"));
+                    $("#infoHoraFin").val(moment(info.event.end).format("HH:mm"));
                     //extendedProps (porque tiene mas de 1 linea)
-                    $("#descripcion").val(info.event.extendedProps.description);  
-                    $("#colorFondo").val(info.event.backgroundColor);
-                    $("#colorTexto").val(info.event.textColor);
+                    $("#infoDescripcion").val(info.event.extendedProps.description);  
+                    $("#infoColorFondo").val(info.event.backgroundColor);
+                    $("#infoColorTexto").val(info.event.textColor);
                     //mostramos el formulario
-                    $('#formularioEventos').modal('show');
+                    // $('#formularioEventos').modal('show');
+                    $('#informacionEvento').modal('show');
                 }
             });
             calendar.render();
+
+
+            //eventos de botones de la aplicacion
+            // control del evento click sobre el boton AGREGAR
+            $('#botonAgregar').click(function(){
+                let registro = recuperarDatosFormulario();
+                agregarRegistro(registro);
+                $('#formularioEventos').modal('hide');
+            });
+
+            // control del evento click sobre el boton BORRAR
+            $("#infoBotonBorrar").click(function(){
+                //recuperamos los datos del formulario que previamente los levanto del calendario
+                let registro = recuperarDatosFormulario();
+                borrarRegistro(registro);
+                $('#informacionEvento').modal('hide');
+            })
+
+
+            //funcion ajax para dar de alta el registro
+            function agregarRegistro(registro) {
+                $.ajax({
+                type: 'POST',
+                url: 'datosEventos.php?accion=agregar',
+                data: registro,
+                success: function(msg){
+                    calendar.refetchEvents(); //si se ejecuto el alta, recarga el calendario
+                },
+                error: function(error){
+                    alert('se produjo un error al agregar el evento :' + error);
+                }
+                })
+            }
+
+            //funcion ajax para borrar el registro
+            function borrarRegistro(registro){
+                $.ajax({
+                type: 'POST',
+                url: 'datosEventos.php?accion=borrar',
+                data: registro,
+                success: function(msg){
+                    calendar.refetchEvents(); //si se ejecuto el alta, recarga el calendario
+                },
+                error: function(error){
+                    alert('se produjo un error al borrar el evento :' + error);
+                }
+                })         
+            }
+
+            //funciones que interactuan con el formulario de eventos
+            function limpiarFormulario(){
+            $('#id').val('');
+            $('#titulo').val('');
+            $('#descripcion').val('');
+            $('#fechaInicio').val('');
+            $('#fechaFin').val('');
+            $('#horaInicio').val('');
+            $('#horaFin').val('');
+            $('#colorFondo').val('#3788D8'); 
+            $('#colorTexto').val('#FFFFFF'); 
+            $('#botonAgregar').show();
+            $('#botonModificar').hide();
+            $('#botonBorrar').hide();
+            }
+
+            //funcion para recuperar los datos del formulario EVENTO.PHP
+            //y pasarlo como parametro POST datosEventos.php para el alta
+            function recuperarDatosFormulario(){
+                let registro = {
+                    id: $('#id').val(),
+                    profesional: value,
+                    dni: $('#titulo').val(), //devuelve el value del campo de seleccion, no el texto
+                    titulo: $('#titulo option:selected').text(), //devuelve el texto del campo de seleccion
+                    descripcion: $('#descripcion').val(),
+                    inicio: $('#fechaInicio').val() + ' ' + $('#horaInicio').val(),
+                    fin: $('#fechaFin').val() + ' ' + $('#horaFin').val(),
+                    colorFondo: $('#colorFondo').val(),
+                    colorTexto: $('#colorTexto').val()
+                }
+
+                // alert('id: ' + registro.id);
+                // alert('id profesional: ' + registro.profesional);
+                // alert('dni: ' + registro.dni);
+                // alert('titulo ' + registro.titulo);
+                // alert('descripcion ' + registro.descripcion);
+                // alert('inicio ' + registro.inicio);
+                // alert('fin ' + registro.fin);
+                // alert('color fondo ' + registro.colorFondo);
+                // alert('color texto ' + registro.colorTexto);
+
+
+                return registro;
+                }
+
 
             // funcion para obtener el parametro desde la URl con javascript
             function getParameterByName(name) {
