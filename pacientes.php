@@ -16,11 +16,11 @@
         <form method="POST" action="pacientes.php">
             <div class="form-group">
                 <label for="">apellido</label>
-                <input type="text" id="apellido" class="form-control" placeholder="ingrese el apellido"><br/>
+                <input type="text" name="apellido" class="form-control" placeholder="ingrese el apellido"><br/>
             </div>
             <div class="form-group">
                 <label for="">nombre</label>
-                <input type="text" id="nombre" class="form-control" placeholder="ingrese el nombre"><br/>
+                <input type="text" name="nombre" class="form-control" placeholder="ingrese el nombre"><br/>
             </div>
 
             <div class="form-group">
@@ -32,8 +32,8 @@
         <?php require("connDB.php"); ?>
 
         <div id="tablas" class="col-6">
-            <table style="background-color: beige;" class="table table-bordered table-responsive">
-                <tr style="background-color: burlywood;">
+            <table class="table table-bordered table-responsive">
+                <tr>
                     <td>id</td>
                     <td>apellido</td>
                     <td>nombre</td>
@@ -54,11 +54,28 @@
                         <td><?php echo $apellido ?></td>
                         <td><?php echo $nombre ?></td>
                         <td><a href="pacienteEditar.php?editar=<?php echo $id ?>">editar</a></td>
-                        <td><a href="paciente.php?borrar=<?php echo $id ?>">borrar</a></td>
+                        <td><a href="pacientes.php?borrar=<?php echo $id ?>">borrar</a></td>
                     </tr>
                 <?php } ?>
             </table>
         </div>
+
+        <br><br>
+        <?php
+            if(isset($_POST['insert'])) {
+                $apellido = $_POST['apellido'];
+                $nombre = $_POST['nombre'];
+
+                $sql = "INSERT INTO `pacientes` (`apellido`, `nombre`) VALUES ('$apellido', '$nombre')";
+                $respuesta = mysqli_query($conexion,$sql);
+                if($respuesta) {
+                    echo'dato grabado';
+                    echo "<script>window.open('pacientes.php','self')</script>";
+                } else {
+                    echo 'error al grabar el dato';
+                }
+            }
+        ?>
 
         <?php
             if(isset($_GET['editar'])) {
@@ -66,6 +83,17 @@
             }
         ?>
 
+        <?php
+            if(isset($_GET['borrar'])) {
+                $borrar_id = $_GET['borrar'];
+                $sql = "DELETE FROM `pacientes` WHERE `pacientes`.`id` = '$borrar_id'";
+                $resultado = mysqli_query($conexion,$sql);
+                if($resultado) {
+                    echo "<script>alert('paciente borrado')</script>";
+                    echo "<script>window.open('pacientes.php','self')</script>";
+                }
+            }
+        ?>
 
     </body>
 </html>
