@@ -5,13 +5,49 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+    <style>
+        body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .topnav {
+        overflow: hidden;
+        background-color: #333;
+        }
+
+        .topnav a {
+        float: left;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+        }
+
+        .topnav a:hover {
+        background-color: #ddd;
+        color: black;
+        }
+
+        .topnav a.active {
+        background-color: #04AA6D;
+        color: white;
+        }
+    </style>
+
+
     <title>Aplicación CRUD PHP</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
   </head>
-    <body style="background-color: aliceblue;">
+    <div class="topnav">
+        <a class="active" href="profesionales.php">inicio</a>
+        <a href="pacientes.php">pacientes</a>
+        <a href="profesionales.php">agendas</a>
+    </div>
 
-    <div align="center" class="col-6">
+    <div align="center" class="col-2">
         <h2 id="texth1" style="margin-top">ingrese los datos del paciente</h2>
         <form method="POST" action="pacientes.php">
             <div class="form-group">
@@ -31,7 +67,7 @@
 
         <?php require("connDB.php"); ?>
 
-        <div id="tablas" class="col-6">
+        <div id="tablas" class="col-8">
             <table class="table table-bordered table-responsive">
                 <tr>
                     <td>id</td>

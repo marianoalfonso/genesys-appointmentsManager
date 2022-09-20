@@ -40,24 +40,6 @@
 
 </head>
 <body>
-    
-<!-- <div class="modal fade" id="formularioProfesionales" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <select id="codigoProfesional" class="form-control">
-                <option value="1" selected>profesional 1</option>
-                <option value="2">profesional 2</option>
-                <option value="3">profesional 3</option>
-                <option value="4">profesional 4</option>
-            </select>
-            
-            <div class="modal-footer">
-                <button type="button" id="cargarAgenda" class="btn btn-success">cargar agenda</button>
-            </div>
-
-        </div>    
-    </div>
-</div> -->
 
     <!-- formulario de eventos -->
     <div class="topnav">
@@ -90,7 +72,8 @@
                             </select>
 
                             <div class="modal-footer">
-                                <button type="button" id="cargarAgenda" class="btn btn-success" onclick="myFunction()">cargar agenda</button>
+                                <button type="button" id="cargarAgenda" class="btn btn-warning" onclick="cargarAgenda()">cargar agenda</button>
+                                <button type="button" id="listarTurnos" class="btn btn-warning" onclick="listarTurnos()">listar turnos</button>
                             </div>
 
                         </div>
@@ -105,12 +88,21 @@
 
         //en el click se dispara esta function
         //obtiene el idProfesional y arma la url con el parametro $_GET
-        function myFunction(){
+        function cargarAgenda(){
             var e = document.getElementById("codigoProfesional");
             var value=e.options[e.selectedIndex].value;// get selected option value
             var text=e.options[e.selectedIndex].text;
             // alert("codigo: " + value + " / texto: " + text);
             const url = "index.php?p=" + encodeURIComponent(value);
+            window.location.href = url;
+        }
+
+        function listarTurnos(){
+            var e = document.getElementById("codigoProfesional");
+            var value=e.options[e.selectedIndex].value;// get selected option value
+            var text=e.options[e.selectedIndex].text;
+            // alert("codigo: " + value + " / texto: " + text);
+            const url = "profesionalesTurnos.php?p=" + encodeURIComponent(value);
             window.location.href = url;
         }
 
