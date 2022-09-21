@@ -11,6 +11,13 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
 
+
+    <!-- CSS personalizado --> 
+    <link rel="stylesheet" href="personas.css">  
+
+
+
+
 </head>
 <body>
 
@@ -22,35 +29,12 @@
     <div class="form-group">
         <br/>
         <!-- <input type="submit" id="btn_inser" name="insert" class="btn btn-warning" value="agregar paciente"> -->
-
-        <button type="button" id="btn_inser" class="btn btn-warning" onclick="cargarPersona()">agregar paciente</button>
-
+            <!-- <button type="button" id="btn_inser" class="btn btn-warning" onclick="cargarPersona()">agregar pInfo.456.ANDISaciente</button> -->
 
 
-        <div class="container mt-5">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">agregar paciente</button>
-            <div clas="modal" id="myModal">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">agregar paciente</h5>
-
-
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-
-
-
-
+            <button id="btnNuevo" type="button" class="btn btn-warning" data-toggle="modal">agregar paciente</button>    
         <br/><br/>
     </div>
-
-
 
 
 
@@ -103,23 +87,13 @@
         </tbody>
     </table>
 
-    <!-- <script>
-
-        $('#botonAgregarPersona').click(function(){
-            alert("evento del boton agregar");
-            $('#formularioEventos').modal('hide');
-        });
-
-        function cargarPersona() {
-            alert("alta de paciente");
-            $('#formularioPersona').modal('show');
-        }
-
-    </script> -->
-
+    
     <script src="//code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="personas.js"></script>  
     <script>
         // $(document).ready(function () {
         //     $('#example').DataTable();
@@ -134,5 +108,8 @@
         } );
     </script>
 
+    
+
+    
 </body>
 </html>

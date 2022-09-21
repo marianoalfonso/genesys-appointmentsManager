@@ -39,7 +39,7 @@
                             <br>
                             <div class="modal-footer">
                                 <p>
-                                    <button type="button" id="cargarAgenda" class="btn btn-warning" onclick="cargarAgenda()">cargar agenda</button>
+                                    <button type="button" id="cargarAgenda" class="btn btn-warning" onclick="cargarAgenda()">ver agenda</button>
                                     <button type="button" id="listarTurnos" class="btn btn-warning" onclick="listarTurnos()">listar turnos</button>
                                 </p>
                             </div>
