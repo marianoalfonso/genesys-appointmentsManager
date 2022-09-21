@@ -22,21 +22,8 @@
                 <div class="form-row">
                   <div class="form-group col-md-12">
                     <label for="">seleccione paciente</label>
-                    <!-- <input type="text" id="titulo" class="form-control" placeholder=""> -->
+                    <input type="text" id="titulo" class="form-control" placeholder="">
 
-                    <!-- cargamos el combo con las personas -->
-                    <select id="titulo" class="form-control">
-                        <?php
-                        //   require_once('connDB.php');
-                          $conexion = regresarConexion();
-                          $consulta = "select dni,apellido,nombre from personas order by apellido,nombre";
-                          $datos = mysqli_query($conexion,$consulta);
-                          $ep = mysqli_fetch_all($datos, MYSQLI_ASSOC);
-                          foreach($ep as $fila){
-                            echo '<option value="'.$fila["dni"].'">'.$fila["apellido"]." ".$fila["nombre"].'</option>';
-                          }
-                        ?>
-                    </select>
 
                   </div>
                 </div>
@@ -51,7 +38,7 @@
               </div>
 
               <div class="modal-footer">
-                <button type="button" id="botonAgregar" class="btn btn-success">agregar</button>
+                <button type="button" id="botonAgregarPersona" class="btn btn-success">agregar</button>
                 <!-- <button type="button" id="botonModificar" class="btn btn-success">modificar</button> -->
                 <!-- <button type="button" id="botonBorrar" class="btn btn-success">borrar</button> -->
                 <button type="button" class="btn btn-success" data-bs-dismiss="modal">cancelar</button>

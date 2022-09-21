@@ -32,12 +32,6 @@
     <?php include "profesionales.php"; ?>
     <?php include "evento.php"; ?>
 
-    <!-- combo profesionales   -->
-    <!-- <select id="profesional" onchange="cambioProfesional(this.value)">
-      <option value="1" selected>profesional 1</option>
-      <option value="2">profesional 2</option>
-    </select> -->
-
     <button id="profesionales">seleccionar profesional</button>
 
     <!-- definicion del calendario -->

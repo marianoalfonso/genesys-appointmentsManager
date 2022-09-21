@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+
 </head>
 <body>
 
@@ -22,6 +24,29 @@
         <!-- <input type="submit" id="btn_inser" name="insert" class="btn btn-warning" value="agregar paciente"> -->
 
         <button type="button" id="btn_inser" class="btn btn-warning" onclick="cargarPersona()">agregar paciente</button>
+
+
+
+        <div class="container mt-5">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">agregar paciente</button>
+            <div clas="modal" id="myModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">agregar paciente</h5>
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
         <br/><br/>
     </div>
 
@@ -78,6 +103,19 @@
         </tbody>
     </table>
 
+    <!-- <script>
+
+        $('#botonAgregarPersona').click(function(){
+            alert("evento del boton agregar");
+            $('#formularioEventos').modal('hide');
+        });
+
+        function cargarPersona() {
+            alert("alta de paciente");
+            $('#formularioPersona').modal('show');
+        }
+
+    </script> -->
 
     <script src="//code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
@@ -94,22 +132,6 @@
                 }
             } );
         } );
-    </script>
-
-    <script>
-
-        $('#botonAgregar').click(function(){
-
-            alert("evento del boton agregar");
-
-            $('#formularioEventos').modal('hide');
-        });
-
-        function cargarPersona() {
-            alert("alta de paciente");
-            $('#formularioPersona').modal('show');
-        }
-
     </script>
 
 </body>
