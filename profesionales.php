@@ -6,50 +6,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>profesionales</title>
 
-    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" /> -->
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 
 </head>
 <body>
 
-    <?php include 'assets/header.php' ?>;    
 
-    <div class="modal fade" id="formularioProfesionales" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <!-- cabecera -->
-                <div class="modal-header">
+    <?php include 'assets/header.php' ?>
 
-                </div>
-            <!-- cuerpo -->
-                <div class="modal-body">
-                    <input type="hidden" id="id">
-                    <div class="form-row">
-                        <div class="form-group col-md-12">
-                            <label for="">seleccione profesional</label>
-                            <select id="codigoProfesional" class="form-control">
-                                <?php
-                                    $mysqli = new mysqli('localhost', 'root', '', 'appointmentsManager');
-                                    $query = $mysqli -> query ("SELECT id,nombre FROM profesionales");
-                                    while ($valores = mysqli_fetch_array($query)) {
-                                        echo '<option value="'.$valores["id"].'">'.$valores["nombre"].'</option>';
-                                    }
-                                ?>
-                            </select>
+    <br>
 
-                            <br>
-                            <div class="modal-footer">
-                                <p>
-                                    <button type="button" id="cargarAgenda" class="btn btn-warning" onclick="cargarAgenda()">ver agenda</button>
-                                    <button type="button" id="listarTurnos" class="btn btn-warning" onclick="listarTurnos()">listar turnos</button>
-                                </p>
-                            </div>
 
-                        </div>
-                    </div>
-                </div>
+
+        <label for="">   seleccione profesional</label>
+        <p>
+            <div class="col-lg-3">
+                <select id="codigoProfesional" class="form-control">
+                    <?php
+                        $mysqli = new mysqli('localhost', 'root', '', 'appointmentsManager');
+                        $query = $mysqli -> query ("SELECT id,nombre FROM profesionales");
+                        while ($valores = mysqli_fetch_array($query)) {
+                            echo '<option value="'.$valores["id"].'">'.$valores["nombre"].'</option>';
+                        }
+                    ?>
+                </select>
             </div>
+        </p>
+
+        <div class="container">
+            <p>
+                <button type="button" id="cargarAgenda" class="btn btn-warning float-left" onclick="cargarAgenda()">ver agenda</button>
+                <button type="button" id="listarTurnos" class="btn btn-warning float-left" onclick="listarTurnos()">listar turnos</button>
+            </p>
         </div>
-    </div>
+
+
+
 
 
     <script>

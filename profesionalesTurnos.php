@@ -15,7 +15,7 @@
 </head>
 <body>
 
-    <?php include 'assets/header.php' ?>;
+    <?php include 'assets/header.php' ?>
     <?php include 'turno.php' ?>
 
 
