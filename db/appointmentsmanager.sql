@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 21-09-2022 a las 17:37:13
--- Versión del servidor: 5.7.36
--- Versión de PHP: 7.4.26
+-- Tiempo de generación: 22-09-2022 a las 09:45:05
+-- Versión del servidor: 8.0.21
+-- Versión de PHP: 7.3.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,10 +29,10 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `coberturas`;
 CREATE TABLE IF NOT EXISTS `coberturas` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(150) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `coberturas`
@@ -60,24 +60,55 @@ INSERT INTO `coberturas` (`id`, `nombre`) VALUES
 
 DROP TABLE IF EXISTS `eventos`;
 CREATE TABLE IF NOT EXISTS `eventos` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `profesional` int(11) NOT NULL,
-  `dni` int(11) NOT NULL,
-  `title` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL,
-  `description` text CHARACTER SET utf8mb4,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `profesional` int NOT NULL,
+  `dni` int NOT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
   `start` datetime DEFAULT NULL,
   `end` datetime DEFAULT NULL,
-  `textColor` varchar(7) CHARACTER SET utf8mb4 DEFAULT NULL,
-  `backgroundColor` varchar(7) CHARACTER SET utf8mb4 DEFAULT NULL,
+  `textColor` varchar(7) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `backgroundColor` varchar(7) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=87 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `eventos`
 --
 
 INSERT INTO `eventos` (`id`, `profesional`, `dni`, `title`, `description`, `start`, `end`, `textColor`, `backgroundColor`) VALUES
-(53, 1, 8, 'Baker Price', '', '2022-09-21 10:00:00', '2022-09-21 11:00:00', '#ffffff', '#3788d8');
+(53, 1, 8, 'Baker Price', '', '2022-09-21 10:00:00', '2022-09-21 11:00:00', '#ffffff', '#3788d8'),
+(54, 1, 8, 'Adkins Zeph', '', '2022-09-01 08:00:00', '2022-09-01 09:00:00', '#ffffff', '#3788d8'),
+(55, 1, 8, 'Ayala Raya', '', '2022-09-01 09:00:00', '2022-09-01 10:00:00', '#ffffff', '#3788d8'),
+(56, 1, 8, 'Franco Emmanuel', '', '2022-09-01 10:00:00', '2022-09-01 11:00:00', '#ffffff', '#3788d8'),
+(57, 1, 8, 'Cannon Zoe', '', '2022-09-01 11:00:00', '2022-09-01 12:00:00', '#ffffff', '#3788d8'),
+(58, 1, 8, 'Webster Camden', '', '2022-09-01 13:00:00', '2022-09-01 14:00:00', '#ffffff', '#3788d8'),
+(59, 1, 8, 'Frost Kato', '', '2022-09-01 14:00:00', '2022-09-01 15:00:00', '#ffffff', '#3788d8'),
+(60, 1, 8, 'Campos Rajah', '', '2022-09-01 15:00:00', '2022-09-01 16:00:00', '#ffffff', '#3788d8'),
+(61, 1, 8, 'Wells Zenaida', '', '2022-09-01 17:00:00', '2022-09-01 18:00:00', '#ffffff', '#3788d8'),
+(62, 1, 8, 'Strickland Shoshana', '', '2022-09-01 18:00:00', '2022-09-01 19:00:00', '#ffffff', '#3788d8'),
+(63, 1, 8, 'Alvarado Germane', '', '2022-09-02 11:00:00', '2022-09-02 12:00:00', '#ffffff', '#3788d8'),
+(64, 1, 8, 'Castillo Jescie', '', '2022-09-02 13:00:00', '2022-09-02 14:00:00', '#ffffff', '#3788d8'),
+(65, 1, 8, 'Ayala Raya', '', '2022-09-02 14:00:00', '2022-09-02 15:00:00', '#ffffff', '#3788d8'),
+(66, 1, 8, 'Whitfield Darrel', '', '2022-09-02 15:00:00', '2022-09-02 16:00:00', '#ffffff', '#3788d8'),
+(67, 1, 8, 'Bartlett Yoshio', '', '2022-09-21 10:00:00', '2022-09-21 11:00:00', '#ffffff', '#3788d8'),
+(68, 2, 8, 'Gentry Nichole', '', '2022-09-02 11:00:00', '2022-09-02 12:00:00', '#ffffff', '#3788d8'),
+(69, 2, 8, 'Alvarado Carla', '', '2022-09-02 12:00:00', '2022-09-02 13:00:00', '#ffffff', '#3788d8'),
+(70, 2, 8, 'Whitley Amery', '', '2022-09-05 08:00:00', '2022-09-05 09:00:00', '#ffffff', '#3788d8'),
+(71, 2, 8, 'Cannon Zoe', '', '2022-09-05 09:00:00', '2022-09-05 10:00:00', '#ffffff', '#3788d8'),
+(72, 2, 8, 'Walsh Price', '', '2022-09-06 11:00:00', '2022-09-06 12:00:00', '#ffffff', '#3788d8'),
+(73, 2, 8, 'Riley Lysandra', '', '2022-09-06 12:00:00', '2022-09-06 13:00:00', '#ffffff', '#3788d8'),
+(74, 2, 8, 'Wilkerson Molly', '', '2022-09-06 13:00:00', '2022-09-06 14:00:00', '#ffffff', '#3788d8'),
+(75, 2, 8, 'Whitley Amery', '', '2022-09-06 14:00:00', '2022-09-06 15:00:00', '#ffffff', '#3788d8'),
+(76, 2, 8, 'Barry Kameko', '', '2022-09-07 10:00:00', '2022-09-07 11:00:00', '#ffffff', '#3788d8'),
+(77, 2, 8, 'Wilkerson Molly', '', '2022-09-08 09:00:00', '2022-09-08 10:00:00', '#ffffff', '#3788d8'),
+(78, 2, 8, 'Burgess Dorothy', '', '2022-09-08 09:00:00', '2022-09-08 10:00:00', '#ffffff', '#3788d8'),
+(79, 2, 8, 'Scott Patricia', '', '2022-09-09 09:00:00', '2022-09-09 10:00:00', '#ffffff', '#3788d8'),
+(80, 2, 8, 'Baxter Hermione', '', '2022-09-09 10:00:00', '2022-09-09 11:00:00', '#ffffff', '#3788d8'),
+(81, 2, 8, 'Scott Patricia', '', '2022-09-09 11:00:00', '2022-09-09 12:00:00', '#ffffff', '#3788d8'),
+(83, 2, 8, 'Dejesus Basia', '', '2022-09-09 12:00:00', '2022-09-09 13:00:00', '#ffffff', '#3788d8'),
+(84, 1, 8, 'Fowler Colton', '', '2022-09-01 16:00:00', '2022-09-01 17:00:00', '#ffffff', '#3788d8'),
+(86, 1, 8, 'Barry Kameko', '', '2022-09-15 10:00:00', '2022-09-15 11:00:00', '#ffffff', '#3788d8');
 
 -- --------------------------------------------------------
 
@@ -87,7 +118,7 @@ INSERT INTO `eventos` (`id`, `profesional`, `dni`, `title`, `description`, `star
 
 DROP TABLE IF EXISTS `eventospredefinidos`;
 CREATE TABLE IF NOT EXISTS `eventospredefinidos` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `titulo` varchar(255) DEFAULT NULL,
   `horaInicio` time DEFAULT NULL,
   `horaFin` time DEFAULT NULL,
@@ -113,7 +144,35 @@ INSERT INTO `eventospredefinidos` (`id`, `titulo`, `horaInicio`, `horaFin`, `col
 DROP TABLE IF EXISTS `log`;
 CREATE TABLE IF NOT EXISTS `log` (
   `msg` varchar(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pacientes`
+--
+
+DROP TABLE IF EXISTS `pacientes`;
+CREATE TABLE IF NOT EXISTS `pacientes` (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `apellido` varchar(100) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Volcado de datos para la tabla `pacientes`
+--
+
+INSERT INTO `pacientes` (`id`, `apellido`, `nombre`, `email`) VALUES
+(14, 'Smith', 'Jack', ''),
+(3, 'Stark', 'Tony', 'tonystark@stark.com'),
+(12, 'Simpson', 'Homero Jay', ''),
+(17, 'Perez', 'Natalie', ''),
+(21, 'Sabin', 'Pedro', ''),
+(19, 'Lorem', 'Lucas K', ''),
+(20, 'Weber', 'Marie', '');
 
 -- --------------------------------------------------------
 
@@ -123,18 +182,18 @@ CREATE TABLE IF NOT EXISTS `log` (
 
 DROP TABLE IF EXISTS `personas`;
 CREATE TABLE IF NOT EXISTS `personas` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `apellido` varchar(100) NOT NULL,
   `nombre` varchar(100) NOT NULL,
-  `dni` int(11) NOT NULL,
+  `dni` int NOT NULL,
   `direccion` varchar(150) NOT NULL,
-  `cobertura1` tinyint(4) NOT NULL,
-  `c1numero` bigint(20) NOT NULL,
-  `cobertura2` tinyint(4) NOT NULL,
-  `c2numero` bigint(20) NOT NULL,
+  `cobertura1` tinyint NOT NULL,
+  `c1numero` bigint NOT NULL,
+  `cobertura2` tinyint NOT NULL,
+  `c2numero` bigint NOT NULL,
   `contacto` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=104 DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM AUTO_INCREMENT=104 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `personas`
@@ -253,10 +312,10 @@ INSERT INTO `personas` (`id`, `apellido`, `nombre`, `dni`, `direccion`, `cobertu
 
 DROP TABLE IF EXISTS `profesionales`;
 CREATE TABLE IF NOT EXISTS `profesionales` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `nombre` varchar(150) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `profesionales`
