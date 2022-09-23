@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 22-09-2022 a las 09:45:05
+-- Tiempo de generación: 23-09-2022 a las 09:53:44
 -- Versión del servidor: 8.0.21
 -- Versión de PHP: 7.3.21
 
@@ -149,11 +149,11 @@ CREATE TABLE IF NOT EXISTS `log` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `pacientes`
+-- Estructura de tabla para la tabla `pacientesold`
 --
 
-DROP TABLE IF EXISTS `pacientes`;
-CREATE TABLE IF NOT EXISTS `pacientes` (
+DROP TABLE IF EXISTS `pacientesold`;
+CREATE TABLE IF NOT EXISTS `pacientesold` (
   `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   `apellido` varchar(100) NOT NULL,
   `nombre` varchar(100) NOT NULL,
@@ -162,10 +162,10 @@ CREATE TABLE IF NOT EXISTS `pacientes` (
 ) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Volcado de datos para la tabla `pacientes`
+-- Volcado de datos para la tabla `pacientesold`
 --
 
-INSERT INTO `pacientes` (`id`, `apellido`, `nombre`, `email`) VALUES
+INSERT INTO `pacientesold` (`id`, `apellido`, `nombre`, `email`) VALUES
 (14, 'Smith', 'Jack', ''),
 (3, 'Stark', 'Tony', 'tonystark@stark.com'),
 (12, 'Simpson', 'Homero Jay', ''),
@@ -193,7 +193,7 @@ CREATE TABLE IF NOT EXISTS `personas` (
   `c2numero` bigint NOT NULL,
   `contacto` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=104 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=109 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `personas`
@@ -302,7 +302,9 @@ INSERT INTO `personas` (`id`, `apellido`, `nombre`, `dni`, `direccion`, `cobertu
 (100, 'Alvarado', 'Carla', 8, 'Ap #553-275 Tempor, Rd.', 5, 11, 9, 11, 'Kylee Mitchell'),
 (101, 'French', 'Barbara', 8, 'P.O. Box 159, 1085 Imperdiet St.', 6, 11, 10, 11, 'Daria Morin'),
 (102, 'Andrews', 'Ahmed', 8, 'Ap #907-5585 Mus. Ave', 5, 11, 6, 11, 'Hasad Jones'),
-(103, 'Mcbride', 'Garrett', 8, '760-3476 Odio Street', 6, 11, 9, 11, 'Warren Hebert');
+(103, 'Mcbride', 'Garrett', 8, '760-3476 Odio Street', 6, 11, 9, 11, 'Warren Hebert'),
+(104, 'Simpson', 'Homero', 124124, 'direccion homero', 3, 765474, 0, 0, ''),
+(108, 'aaaaaaaaaaaaa', 'aaaaaaaaaaaaa', 1234, 'direccion', 2, 1231245, 0, 0, '');
 
 -- --------------------------------------------------------
 

@@ -11,6 +11,7 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">  
 
     <!-- CSS personalizado --> 
     <link rel="stylesheet" href="personas.css">  
@@ -28,66 +29,35 @@
 
     <div class="form-group">
         <br/>
-        <!-- <input type="submit" id="btn_inser" name="insert" class="btn btn-warning" value="agregar paciente"> -->
-            <!-- <button type="button" id="btn_inser" class="btn btn-warning" onclick="cargarPersona()">agregar pInfo.456.ANDISaciente</button> -->
-
-
             <button id="btnNuevo" type="button" class="btn btn-warning" data-toggle="modal">agregar paciente</button>    
         <br/><br/>
     </div>
 
+    <div class="container caja">
+        <div class="row">
+            <div class="col-lg-12">
+            <div class="table-responsive">        
+                <table id="tablaPersonas" class="table table-striped table-bordered table-condensed" style="width:100%" >
+                    <thead class="text-center">
+                        <tr>
+                            <th>id</th>
+                            <th>apellido</th>
+                            <th>nombre</th>                                
+                            <th>dni</th>  
+                            <th>direccion</th>
+                            <th>cobertura</th>
+                            <th>socio</th>
+                            <th>acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>                           
+                    </tbody>        
+                </table>               
+            </div>
+            </div>
+        </div>  
+    </div>   
 
-
-    <table id="example" class="table table-striped" style="width:100%">
-        <thead>
-            <tr>
-                <td>id</td>
-                <td>apellido</td>
-                <td>nombre</td>
-                <td>dni</td>
-                <td>direccion</td>
-                <td>cobertura 1</td>
-                <td>socio 1</td>
-
-                <td>accion</td>
-            </tr>
-        </thead>
-        <tbody>
-
-        <?php
-            // require("connDB.php");
-            $sql = "select personas.id,apellido,personas.nombre,dni,direccion,coberturas.nombre as cobertura,c1numero 
-                        from personas inner join coberturas ON
-                        personas.cobertura1 = coberturas.id
-                        order by apellido,personas.nombre";
-            $conexion = regresarConexion();
-            $respuesta = mysqli_query($conexion,$sql);
-            $i = 0;
-            while($fila = mysqli_fetch_array($respuesta)) {
-                $id = $fila['id'];
-                $apellido = $fila['apellido'];
-                $nombre = $fila['nombre'];
-                $dni = $fila['dni'];
-                $direccion = $fila['direccion'];
-                $cobertura = $fila['cobertura'];
-                $c1numero = $fila['c1numero'];
-                $i++; ?>
-            <tr>
-                <td><?php echo $id ?></td>
-                <td><?php echo $apellido ?></td>
-                <td><?php echo $nombre ?></td>
-                <td><?php echo $dni ?></td>
-                <td><?php echo $direccion ?></td>
-                <td><?php echo $cobertura ?></td>
-                <td><?php echo $c1numero ?></td>
-                <td><a href="pacientes.php?borrar=<?php echo $id ?>">borrar</a></td>
-            </tr>
-            <?php } ?>
-
-        </tbody>
-    </table>
-
-    
     <script src="//code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
@@ -100,7 +70,7 @@
         // });
 
         $(document).ready(function() {
-            $('#example').DataTable( {
+            $('#tablePersonas').DataTable( {
                 language: {
                     url: '//cdn.datatables.net/plug-ins/1.12.1/i18n/es-AR.json'
                 }

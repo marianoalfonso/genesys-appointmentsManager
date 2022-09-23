@@ -12,13 +12,13 @@ $id = (isset($_POST['id'])) ? $_POST['id'] : '';
 
 switch($opcion){
     case 1:
-        $consulta = "INSERT INTO usuarios (apellido, nombre) VALUES('$apellido', '$nombre')";			
+        $consulta = "INSERT INTO personas (apellido, nombre) VALUES('$apellido', '$nombre')";			
         $resultado = $conexion->prepare($consulta);
         $resultado->execute(); 
         
         // $consulta = "SELECT * FROM usuarios ORDER BY user_id DESC LIMIT 1";
         $consulta = "select personas.id,apellido,personas.nombre,dni,direccion,coberturas.nombre as cobertura,c1numero 
-                        from personas inner join coberturas ON
+                        from personas left join coberturas ON
                         personas.cobertura1 = coberturas.id
                         order by apellido,personas.nombre";
         $resultado = $conexion->prepare($consulta);
@@ -41,7 +41,10 @@ switch($opcion){
         $resultado->execute();                           
         break;
     case 4:    
-        $consulta = "SELECT * FROM usuarios";
+        $consulta = "select personas.id as id,apellido,personas.nombre,dni,direccion,coberturas.nombre as cobertura,c1numero as socio
+                        from personas inner join coberturas ON
+                        personas.cobertura1 = coberturas.id
+                        order by apellido,personas.nombre";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();        
         $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
