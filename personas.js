@@ -29,11 +29,13 @@ $(document).ready(function() {
         e.preventDefault(); //evita el comportambiento normal del submit, es decir, recarga total de la página
         apellido = $.trim($('#apellido').val());    
         nombre = $.trim($('#nombre').val());
+        dni = $.trim($('#dni').val());
+        direccion = $.trim($('#direccion').val());
             $.ajax({
               url: "crud.php",
               type: "POST",
               datatype:"json",    
-              data:  {apellido:apellido, nombre:nombre, opcion:opcion},    
+              data:  {apellido:apellido, nombre:nombre, dni:dni, direccion:direccion, opcion:opcion},    
               success: function(data) {
                 // tablaPersonas.ajax.reload(null, false);
                }

@@ -24,6 +24,20 @@
                         <input type="text" class="form-control" id="nombre">
                       </div>               
                     </div>
+                    <!-- dni -->
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label for="" class="col-form-label">dni</label>
+                        <input type="text" class="form-control" id="dni">
+                      </div>               
+                    </div>
+                    <!-- direccion -->
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label for="" class="col-form-label">direccion</label>
+                        <input type="direccion" class="form-control" id="direccion">
+                      </div>               
+                    </div>
                 </div>
 
 

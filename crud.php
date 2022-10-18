@@ -5,6 +5,8 @@ $conexion = $objeto->Conectar();
 
 $apellido = (isset($_POST['apellido'])) ? $_POST['apellido'] : '';
 $nombre = (isset($_POST['nombre'])) ? $_POST['nombre'] : '';
+$dni = (isset($_POST['dni'])) ? $_POST['dni'] : '';
+$direccion = (isset($_POST['direccion'])) ? $_POST['direccion'] : '';
 
 $opcion = (isset($_POST['opcion'])) ? $_POST['opcion'] : '';
 $id = (isset($_POST['id'])) ? $_POST['id'] : '';
@@ -12,11 +14,17 @@ $id = (isset($_POST['id'])) ? $_POST['id'] : '';
 
 switch($opcion){
     case 1:
-        $consulta = "INSERT INTO personas (apellido, nombre) VALUES('$apellido', '$nombre')";			
+        // echo '<script language="javascript">alert("opcion 1"); return false;</script>';
+        // $consulta = "INSERT INTO personas (apellido, dni) VALUES ('$apellido', '$dni')";			
+        // $consultaLOG = "INSERT INTO log (msg) VALUES ('$consulta')";			
+        // $resultadoLOG = $conexion->prepare($consultaLOG);
+        // $resultadoLOG->execute(); 
+
+
+        $consulta = "INSERT INTO personas (apellido, nombre, dni, direccion) VALUES ('$apellido', '$nombre', '$dni', '$direccion')";			
         $resultado = $conexion->prepare($consulta);
         $resultado->execute(); 
         
-        // $consulta = "SELECT * FROM usuarios ORDER BY user_id DESC LIMIT 1";
         $consulta = "select personas.id,apellido,personas.nombre,dni,direccion,coberturas.nombre as cobertura,c1numero 
                         from personas left join coberturas ON
                         personas.cobertura1 = coberturas.id
