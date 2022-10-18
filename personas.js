@@ -59,19 +59,15 @@ $("#btnNuevo").click(function(){
 $(document).on("click", ".btnEditar", function(){		        
     opcion = 2;//editar
     fila = $(this).closest("tr");	        
-    user_id = parseInt(fila.find('td:eq(0)').text()); //capturo el ID		            
-    username = fila.find('td:eq(1)').text();
-    first_name = fila.find('td:eq(2)').text();
-    last_name = fila.find('td:eq(3)').text();
-    gender = fila.find('td:eq(4)').text();
-    password = fila.find('td:eq(5)').text();
-    status = fila.find('td:eq(6)').text();
-    $("#username").val(username);
-    $("#first_name").val(first_name);
-    $("#last_name").val(last_name);
-    $("#gender").val(gender);
-    $("#password").val(password);
-    $("#status").val(status);
+    id = parseInt(fila.find('td:eq(0)').text()); //capturo el ID		            
+    apellido = fila.find('td:eq(1)').text();
+    nombre = fila.find('td:eq(2)').text();
+    dni = fila.find('td:eq(3)').text();
+    direccion = fila.find('td:eq(4)').text();
+    $("#apellido").val(apellido);
+    $("#nombre").val(nombre);
+    $("#dni").val(dni);
+    $("#direccion").val(direccion);
     $(".modal-header").css("background-color", "#007bff");
     $(".modal-header").css("color", "white" );
     $(".modal-title").text("Editar Usuario");		

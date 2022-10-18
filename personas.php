@@ -16,9 +16,6 @@
     <!-- CSS personalizado --> 
     <link rel="stylesheet" href="personas.css">  
 
-
-
-
 </head>
 <body>
 
@@ -77,9 +74,6 @@
             } );
         } );
     </script>
-
-    
-
     
 </body>
 </html>

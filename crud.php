@@ -14,13 +14,6 @@ $id = (isset($_POST['id'])) ? $_POST['id'] : '';
 
 switch($opcion){
     case 1:
-        // echo '<script language="javascript">alert("opcion 1"); return false;</script>';
-        // $consulta = "INSERT INTO personas (apellido, dni) VALUES ('$apellido', '$dni')";			
-        // $consultaLOG = "INSERT INTO log (msg) VALUES ('$consulta')";			
-        // $resultadoLOG = $conexion->prepare($consultaLOG);
-        // $resultadoLOG->execute(); 
-
-
         $consulta = "INSERT INTO personas (apellido, nombre, dni, direccion) VALUES ('$apellido', '$nombre', '$dni', '$direccion')";			
         $resultado = $conexion->prepare($consulta);
         $resultado->execute(); 
@@ -33,21 +26,24 @@ switch($opcion){
         $resultado->execute();
         $data=$resultado->fetchAll(PDO::FETCH_ASSOC);       
         break;    
+
     case 2:        
-        $consulta = "UPDATE usuarios SET username='$username', first_name='$first_name', last_name='$last_name', gender='$gender', password='$password', status='$status' WHERE user_id='$user_id' ";		
+        $consulta = "UPDATE personas SET apellido = '$apellido', nombre = '$nombre', dni = '$dni', direccion ='$direccion' ' WHERE id = '$id' ";		
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();        
         
-        $consulta = "SELECT * FROM usuarios WHERE user_id='$user_id' ";       
+        $consulta = "SELECT * FROM usuarios WHERE id = '$id' ";       
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
         $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
         break;
+
     case 3:        
-        $consulta = "DELETE FROM usuarios WHERE user_id='$user_id' ";		
+        $consulta = "DELETE FROM usuarios WHERE id = '$id'";		
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();                           
         break;
+
     case 4:    
         $consulta = "select personas.id as id,apellido,personas.nombre,dni,direccion,coberturas.nombre as cobertura,c1numero as socio
                         from personas inner join coberturas ON
