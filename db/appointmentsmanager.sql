@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 18-10-2022 a las 02:49:20
+-- Tiempo de generación: 19-10-2022 a las 02:38:39
 -- Versión del servidor: 8.0.21
 -- Versión de PHP: 7.3.21
 
@@ -200,18 +200,18 @@ CREATE TABLE IF NOT EXISTS `personas` (
   `cobertura2` tinyint NOT NULL,
   `c2numero` bigint NOT NULL,
   `contacto` text NOT NULL,
-  `activo` tinyint(1) NOT NULL DEFAULT '1',
+  `estado` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `dni` (`dni`),
   KEY `FK_cobertura_persona` (`cobertura1`),
   KEY `FK_cobertura2_persona` (`cobertura2`)
-) ENGINE=MyISAM AUTO_INCREMENT=131 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=137 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `personas`
 --
 
-INSERT INTO `personas` (`id`, `apellido`, `nombre`, `dni`, `direccion`, `cobertura1`, `c1numero`, `cobertura2`, `c2numero`, `contacto`, `activo`) VALUES
+INSERT INTO `personas` (`id`, `apellido`, `nombre`, `dni`, `direccion`, `cobertura1`, `c1numero`, `cobertura2`, `c2numero`, `contacto`, `estado`) VALUES
 (1, 'Luna', 'Juanita ', '7578664', 'San Martin 234', 1, 67445534876, 0, 11111111111, 'Maria Perez (madre)\r\ntel: 011-58442213\r\ndireccion: misma\r\n', 0),
 (2, 'Quintana', 'Juan', '6116273', 'Belgrano 734 piso 3 depto b', 3, 87445532876, 0, 11111111112, 'Juan Pedro (vecino)\r\n011-76543321\r\ndir: lavalle 345', 0),
 (3, 'Hansen', 'Sopoline', '7845369', 'Ap #705-2809 Aenean St.', 6, 87433532876, 1, 11111111113, 'Hasad Torres', 0),
@@ -318,7 +318,13 @@ INSERT INTO `personas` (`id`, `apellido`, `nombre`, `dni`, `direccion`, `cobertu
 (104, 'Simpson', 'Homero', '62685088', 'direccion homero', 3, 765474, 0, 0, '', 0),
 (128, 'Mayer', 'John', '', '', 0, 0, 0, 0, '', 1),
 (129, 'Mayer', 'John', '22925061', '', 0, 0, 0, 0, '', 1),
-(130, 'Alfonso', 'Violeta', '48373875', 'Cramer 1879 15 E', 0, 0, 0, 0, '', 1);
+(130, 'Alfonso', 'Violeta', '48373875', 'Cramer 1879 15 E', 0, 0, 0, 0, '', 1),
+(131, 'martin', 'alonso', '23423423', 'cuba 3234', 0, 234293879253, 0, 0, 'leticia (432423235)', 0),
+(132, 'pedron', 'picapiedrasn', '23423523', 'calle la roca 3245', 0, 234443829, 0, 0, 'roco', 1),
+(133, 'apellidoflash', 'nombreflash', '23423', 'direccionflash', 0, 234235, 0, 0, 'flash tio', 0),
+(134, 'tetra', 'brick', '1414123', 'tetra 2342', 0, 234235232, 0, 0, 'damajuana', 1),
+(135, 'testcobertura', 'testcobertura', '23459080', 'direccion cobertura', 10, 32423425, 0, 0, 'test', 1),
+(136, 'Mayer', 'John', '87774763', 'lafayatte 344', 6, 342342423, 0, 0, 'guitar center\r\ncollins av. hallandale\r\nMiami', 1);
 
 -- --------------------------------------------------------
 

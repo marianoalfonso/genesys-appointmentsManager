@@ -30,6 +30,10 @@
         <br/><br/>
     </div>
 
+    <div class="container">
+        <a href="personaAdd.php" class="btn btn-warning">agregar paciente NEW</a>
+    </div>
+
     <div class="container caja">
         <div class="row">
             <div class="col-lg-12">

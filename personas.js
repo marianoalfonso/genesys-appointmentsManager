@@ -19,7 +19,9 @@ $(document).ready(function() {
             {"data": "direccion"},
             {"data": "cobertura"},
             {"data": "socio"},
-            {"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btn-sm btnEditar'><i class='material-icons'>edit</i></button><button class='btn btn-danger btn-sm btnBorrar'><i class='material-icons'>delete</i></button></div></div>"}
+            // {"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btn-sm btnEditar'><i class='material-icons'>edit</i></button><button class='btn btn-danger btn-sm btnBorrar'><i class='material-icons'>delete</i></button></div></div>"}
+            {"defaultContent": "<div class='text-center'><div class='btn-group'><a href='personaEDIT.php?id=<?php echo $row['id'] ?>' class='link-dark'></div></div>"}
+            
         ]
     });  
 
@@ -58,7 +60,8 @@ $("#btnNuevo").click(function(){
 //Editar        
 $(document).on("click", ".btnEditar", function(){		        
     opcion = 2;//editar
-    fila = $(this).closest("tr");	        
+    fila = $(this).closest("tr");
+    var respuesta = confirm("¿Está seguro de editar el registro "+user_id+"?"); 	        
     id = parseInt(fila.find('td:eq(0)').text()); //capturo el ID		            
     apellido = fila.find('td:eq(1)').text();
     nombre = fila.find('td:eq(2)').text();
