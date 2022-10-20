@@ -39,7 +39,7 @@ switch($opcion){
         break;
 
     case 3:        
-        $consulta = "DELETE FROM usuarios WHERE id = '$id'";		
+        $consulta = "DELETE FROM personas WHERE id = '$id'";		
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();                           
         break;

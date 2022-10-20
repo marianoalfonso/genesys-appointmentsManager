@@ -26,13 +26,15 @@
 
     <div class="form-group">
         <br/>
-            <button id="btnNuevo" type="button" class="btn btn-warning" data-toggle="modal">agregar paciente</button>    
+            <!-- boton para form modal (habilitar con la refactorizacion) -->
+            <!-- <button id="btnNuevo" type="button" class="btn btn-warning" data-toggle="modal">agregar paciente</button>     -->
+            <a href="personaAdd.php" class="btn btn-warning">agregar paciente</a>
         <br/><br/>
     </div>
 
-    <div class="container">
+    <!-- <div class="container">
         <a href="personaAdd.php" class="btn btn-warning">agregar paciente NEW</a>
-    </div>
+    </div> -->
 
     <div class="container caja">
         <div class="row">

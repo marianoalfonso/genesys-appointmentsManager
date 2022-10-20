@@ -1,5 +1,6 @@
 <?php
     include "connDB.php";
+    $id = $_GET['id'];
 
     $conn = regresarConexion();
     if(isset($_POST['submit'])){
@@ -17,14 +18,14 @@
             $valorEstado = 0;
         }
 
-        $consulta = "INSERT INTO `personas`(`id`, `apellido`, `nombre`, `dni`, `direccion`, `cobertura1`, `c1numero`, `contacto`, `estado`) VALUES 
-        (null,'$apellido','$nombre','$dni','$direccion','$cobertura','$numero','$contacto','$valorEstado')";
+        $consulta = "UPDATE `personas` SET `apellido`='$apellido',`nombre`='$nombre',`dni`='$dni',`direccion`='$direccion',
+            `cobertura1`='$cobertura',`c1numero`='$numero',`contacto`='$contacto',`estado`='$estado' WHERE id=$id";
 
         $result = mysqli_query($conn, $consulta);
         if($result){
             header("Location: personas.php");
         } else {
-            echo "error guardando los datos: ".mysqli_error($conn);
+            echo "error actualizando los datos: ".mysqli_error($conn);
         }
 
     }
@@ -47,17 +48,24 @@
 </head>
 <body>
     <nav class="navbar navbar-light justify-content-center fs-3 mb-5" style="background-color: #00FF5573";>
-        alta de pacientes
+        editar paciente
     </nav>
 
     <!-- <div class="container">
         <div class="text-center mb-4">
-            <h3>agregar nuevo paciente</h3>
-            <p class="text-muted">complete los campos para agregar un nuevo paciente</p>
+            <h3>editar paciente</h3>
+            <p class="text-muted">actualice los datos del paciente</p>
         </div>
     </div> -->
 
-    .<div class="container d-flex justify-content-center">
+    <?php
+        // $id = $_GET['id'];
+        $consulta = "select * from personas where id = $id limit 1";
+        $result = mysqli_query($conn, $consulta);
+        $row = mysqli_fetch_assoc($result);
+    ?>
+
+    <div class="container d-flex justify-content-center">
         <form action="" method="post" style="width: 50vw; min-width: 300px;">
             <div class="row">
 
@@ -66,10 +74,12 @@
                     <div class="col">
                         <div class="form-group mb-3">
                             <label>estado</label> &nbsp;
-                            <input type="radio" class="form-check-input" name="estado" id="activo" value="activo" checked>
+                            <input type="radio" class="form-check-input" name="estado" 
+                             id="activo" value="activo" <?php echo($row['estado'] == '1') ? "checked" : "";?> >
                             <label for="male" class="form-input-label">activo</label>
                             &nbsp;
-                            <input type="radio" class="form-check-input" name="estado" id="inactivo" value="inactivo">
+                            <input type="radio" class="form-check-input" name="estado" 
+                             id="inactivo" value="inactivo" <?php echo($row['estado'] == '0') ? "checked" : "";?> >
                             <label for="male" class="form-input-label">inactivo</label>
                         </div>
                     </div>
@@ -78,26 +88,26 @@
                 <!-- apellido -->
                 <div class="col">
                     <label class="form-label">apellido</label>
-                    <input type="text" class="form-control" name="apellido" placeholder="apellido">
+                    <input type="text" class="form-control" name="apellido" value="<?php echo $row['apellido']?>">
                 </div>
                 <!-- nombre -->
                 <div class="col">
                     <label class="form-label">nombre</label>
-                    <input type="text" class="form-control" name="nombre" placeholder="nombre">
+                    <input type="text" class="form-control" name="nombre" value="<?php echo $row['nombre']?>">
                 </div>
             </div>
             <div class="row">
                 <!-- dni -->
                 <div class="col">
                     <label class="form-label">dni</label>
-                    <input type="number" class="form-control" name="dni" placeholder="dni">
+                    <input type="number" class="form-control" name="dni" value="<?php echo $row['dni']?>">
                 </div>                
             </div>
             <div class="row">
                 <!-- direccion -->
                 <div class="col">
                     <label class="form-label">direccion</label>
-                    <input type="text" class="form-control" name="direccion" placeholder="direccion">
+                    <input type="text" class="form-control" name="direccion" value="<?php echo $row['direccion']?>">
                 </div>
             </div>
             <div class="row">
@@ -106,8 +116,12 @@
                     <!-- cargamos el combo con las coberturas -->
                     <label class="form label">cobertura</label>
                     <select name = "cobertura" id="cobertura" class="form-control">
-                        <option value="0">seleccione una cobertura</option>
+                        <!-- <option value="0">seleccione una cobertura</option> -->
                         <?php
+
+                            $selected[$cobertura] = 'selected="selected"';
+
+
                             // require_once('connDB.php');
                             $conexion = regresarConexion();
                             $consulta = "select id,nombre from coberturas order by nombre";
@@ -124,21 +138,21 @@
                 <!-- cobertura numero -->
                 <div class="col">
                     <label class="form-label">numero</label>
-                    <input type="text" class="form-control" name="c1numero" placeholder="numero">
+                    <input type="text" class="form-control" name="c1numero" value="<?php echo $row['c1numero']?>">
                 </div>
             </div>
             <div class="row">
                 <!-- contacto -->
                 <div class="col">
                     <label class="form-label">contacto</label>
-                    <textarea name="contacto" class="form-control" id="contacto" placeholder="contacto"s></textarea>
+                    <textarea name="contacto" class="form-control" id="contacto"><?php echo $row['contacto']?></textarea>
                 </div>
             </div>
 
             <!-- boton submit -->
             <div>
                 <br>
-                <button type="submit" class="btn btn-success" name="submit">guardar</button>
+                <button type="submit" class="btn btn-success" name="submit">modificar</button>
                 <a href="personas.php" class="btn btn-danger">cancelar</a>
             </div>
             

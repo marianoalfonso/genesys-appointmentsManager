@@ -19,8 +19,7 @@ $(document).ready(function() {
             {"data": "direccion"},
             {"data": "cobertura"},
             {"data": "socio"},
-            // {"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btn-sm btnEditar'><i class='material-icons'>edit</i></button><button class='btn btn-danger btn-sm btnBorrar'><i class='material-icons'>delete</i></button></div></div>"}
-            {"defaultContent": "<div class='text-center'><div class='btn-group'><a href='personaEDIT.php?id=<?php echo $row['id'] ?>' class='link-dark'></div></div>"}
+            {"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btn-sm btnEditar'><i class='material-icons'>edit</i></button><button class='btn btn-danger btn-sm btnBorrar'><i class='material-icons'>delete</i></button></div></div>"}
             
         ]
     });  
@@ -58,42 +57,68 @@ $("#btnNuevo").click(function(){
 });
 
 //Editar        
+// $(document).on("click", ".btnEditar", function(){		        
+//     opcion = 2;//editar
+//     fila = $(this).closest("tr");
+//     var respuesta = confirm("¿Está seguro de editar el registro "+user_id+"?"); 	        
+//     id = parseInt(fila.find('td:eq(0)').text()); //capturo el ID		            
+//     apellido = fila.find('td:eq(1)').text();
+//     nombre = fila.find('td:eq(2)').text();
+//     dni = fila.find('td:eq(3)').text();
+//     direccion = fila.find('td:eq(4)').text();
+//     $("#apellido").val(apellido);
+//     $("#nombre").val(nombre);
+//     $("#dni").val(dni);
+//     $("#direccion").val(direccion);
+//     $(".modal-header").css("background-color", "#007bff");
+//     $(".modal-header").css("color", "white" );
+//     $(".modal-title").text("Editar Usuario");		
+//     $('#modalCRUD').modal('show');		   
+// });
+
 $(document).on("click", ".btnEditar", function(){		        
     opcion = 2;//editar
     fila = $(this).closest("tr");
-    var respuesta = confirm("¿Está seguro de editar el registro "+user_id+"?"); 	        
-    id = parseInt(fila.find('td:eq(0)').text()); //capturo el ID		            
-    apellido = fila.find('td:eq(1)').text();
-    nombre = fila.find('td:eq(2)').text();
-    dni = fila.find('td:eq(3)').text();
-    direccion = fila.find('td:eq(4)').text();
-    $("#apellido").val(apellido);
-    $("#nombre").val(nombre);
-    $("#dni").val(dni);
-    $("#direccion").val(direccion);
-    $(".modal-header").css("background-color", "#007bff");
-    $(".modal-header").css("color", "white" );
-    $(".modal-title").text("Editar Usuario");		
-    $('#modalCRUD').modal('show');		   
+    id = parseInt(fila.find('td:eq(0)').text()); //capturo el ID
+
+    const url = "personaEDIT.php?id=" + encodeURIComponent(id);
+    window.location.href = url;
+
+
+	   
 });
 
+
 //Borrar
-$(document).on("click", ".btnBorrar", function(){
-    fila = $(this);           
-    user_id = parseInt($(this).closest('tr').find('td:eq(0)').text()) ;		
-    opcion = 3; //eliminar        
-    var respuesta = confirm("¿Está seguro de borrar el registro "+user_id+"?");                
-    if (respuesta) {            
-        $.ajax({
-          url: "bd/crud.php",
-          type: "POST",
-          datatype:"json",    
-          data:  {opcion:opcion, user_id:user_id},    
-          success: function() {
-              tablaUsuarios.row(fila.parents('tr')).remove().draw();                  
-           }
-        });	
-    }
- });
+// $(document).on("click", ".btnBorrar", function(){
+//     fila = $(this);           
+//     idPersona = parseInt($(this).closest('tr').find('td:eq(0)').text()) ;
+//     opcion = 3; //eliminar        
+//     var respuesta = confirm("¿Está seguro de borrar el paciente seleccionado ?");                
+//     if (respuesta) {            
+//         $.ajax({
+//           url: "crud.php",
+//           type: "POST",
+//           datatype:"json",    
+//           data:  {opcion:opcion, user_id:idPersona},    
+//           success: function() {
+//               tablaUsuarios.row(fila.parents('tr')).remove().draw();                  
+//            }
+//         });	
+//     }
+//  });
      
+//Borrar
+ $(document).on("click", ".btnBorrar", function(){		        
+    opcion = 3;//editar
+    fila = $(this).closest("tr");
+    id = parseInt(fila.find('td:eq(0)').text()); //capturo el ID
+    var respuesta = confirm("¿Está seguro de borrar el paciente seleccionado ?");                
+        if (respuesta) { 
+            const url = "personaDELETE.php?id=" + encodeURIComponent(id);
+            window.location.href = url;
+        }
+        
+    });
+
 });    
