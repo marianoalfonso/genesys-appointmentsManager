@@ -17,14 +17,14 @@
                             <h3 class="text-center text-info">Login</h3>
                             <div class="form-group">
                                 <label for="username" class="text-info">usuario:</label><br>
-                                <input type="text" name="username" id="username" class="form-control">
+                                <input type="text" name="username" id="username" class="form-control" value="testing">
                             </div>
                             <div class="form-group">
                                 <label for="password" class="text-info">password:</label><br>
-                                <input type="text" name="password" id="password" class="form-control">
+                                <input type="text" name="password" id="password" class="form-control" value="testing">
                             </div>
                             <div class="form-group">
-                                <a href="http://localhost/genesys-appointmentsManager/profesionales.php" target="_blank" class="btn btn-warning btn-md">ingresar</a>
+                                <a href="profesionales.php" target="_blank" class="btn btn-warning btn-md">ingresar</a>
                             </div>
                         </form>
                     </div>

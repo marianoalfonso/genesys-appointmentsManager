@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,13 +20,15 @@
     <?php include 'turno.php' ?>
 
 
+
+
     <div class="form-group">
         <br/>
         <!-- <input type="submit" id="btn_inser" name="insert" class="btn btn-warning" value="agregar paciente"> -->
             <!-- <button type="button" id="btn_inser" class="btn btn-warning" onclick="cargarPersona()">agregar pInfo.456.ANDISaciente</button> -->
 
 
-            <button id="btnNuevoTurno" type="button" class="btn btn-warning" data-toggle="modal">agregar turno</button>    
+            <button id="btnNuevoTurno" type="button" class="btn btn-warning" data-toggle="modal" disabled>agregar turno</button>    
         <br/><br/>
     </div>
 
@@ -41,6 +44,7 @@
                 <td>n_socio</td>
                 <td>.</td>
                 <td>.</td>
+                <td>.</td>
             </tr>
         </thead>
         <tbody>
@@ -52,7 +56,7 @@
             eventos.id,personas.apellido,personas.nombre,eventos.start as inicio,eventos.end as fin,coberturas.nombre as cobertura,personas.c1numero as n_socio
                 FROM eventos
                 inner join personas ON
-                eventos.dni = personas.id
+                eventos.dni = personas.dni
                 left join coberturas ON
                 personas.cobertura1 = coberturas.id
             where profesional = '$id_profesional' order by start";
@@ -77,6 +81,7 @@
                 <td><?php echo $cobertura ?></td>
                 <td><?php echo $n_socio ?></td>
                 <td><a href="pacientes.php?borrar=<?php echo $id ?>">modificar</a></td>
+                <td><a href="modulos/turnoReplicar.php?replicar=<?php echo $id ?>">replicar</a></td>
                 <td><a href="pacientes.php?borrar=<?php echo $id ?>">borrar</a></td>
             </tr>
             <?php } ?>

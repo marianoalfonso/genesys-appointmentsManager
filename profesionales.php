@@ -17,17 +17,16 @@
 
 
     <?php include 'assets/header.php' ?>
+    <?php include 'connDB.php' ?>
 
     <br>
-
-
-
         <label for="">   seleccione profesional</label>
         <p>
             <div class="col-lg-3">
                 <select id="codigoProfesional" class="form-control">
                     <?php
-                        $mysqli = new mysqli('localhost', 'root', '', 'appointmentsManager');
+                        // $mysqli = new mysqli('localhost', 'root', '', 'appointmentsManager');
+                        $mysqli = regresarConexion();
                         $query = $mysqli -> query ("SELECT id,nombre FROM profesionales");
                         while ($valores = mysqli_fetch_array($query)) {
                             echo '<option value="'.$valores["id"].'">'.$valores["nombre"].'</option>';

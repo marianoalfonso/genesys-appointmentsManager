@@ -33,7 +33,7 @@
                         <?php
                           require_once('connDB.php');
                           $conexion = regresarConexion();
-                          $consulta = "select dni,apellido,nombre from personas order by apellido,nombre";
+                          $consulta = "select dni,apellido,nombre from personas where estado = 1 order by apellido,nombre";
                           $datos = mysqli_query($conexion,$consulta);
                           $ep = mysqli_fetch_all($datos, MYSQLI_ASSOC);
                           foreach($ep as $fila){

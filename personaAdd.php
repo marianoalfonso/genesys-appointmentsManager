@@ -57,7 +57,7 @@
         </div>
     </div> -->
 
-    .<div class="container d-flex justify-content-center">
+    <div class="container d-flex justify-content-center">
         <form action="" method="post" style="width: 50vw; min-width: 300px;">
             <div class="row">
 

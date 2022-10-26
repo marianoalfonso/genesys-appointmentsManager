@@ -19,7 +19,7 @@
         }
 
         $consulta = "UPDATE `personas` SET `apellido`='$apellido',`nombre`='$nombre',`dni`='$dni',`direccion`='$direccion',
-            `cobertura1`='$cobertura',`c1numero`='$numero',`contacto`='$contacto',`estado`='$estado' WHERE id=$id";
+            `cobertura1`='$cobertura',`c1numero`='$numero',`contacto`='$contacto',`estado`='$valorEstado' WHERE id=$id";
 
         $result = mysqli_query($conn, $consulta);
         if($result){
