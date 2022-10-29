@@ -45,8 +45,6 @@
 
 
 
-
-
     <script>
 
         //en el click se dispara esta function

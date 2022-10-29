@@ -20,8 +20,8 @@
 
     <?php
         session_start();
-        $_SESSION['accion'] = "replicar turno";
-        $id = $_GET['replicar'];
+        $_SESSION['accion'] = "modificar turno";
+        $id = $_GET['id'];
         require_once("../db/dbConnection.php");
         $mySql = new Connection();
         $conn = $mySql->getConnection();
@@ -48,21 +48,28 @@
                         <input type="text" class="form-control" name="title" value="<?php echo $row['title']?>" readonly>
                     </div>
 
+                    <!-- apellido y nombre -->
+                    <div class="col">
+                        <label class="form-label">descripcion</label>
+                        <input type="text" class="form-control" name="description" value="<?php echo $row['description']?>">
+                    </div>
+
                     <!-- turno desde-->
                     <div class="col">
-                        <label class="form-label">turno asignado</label>
-                        <input type="text" class="form-control" name="turnoDesde" value="<?php echo substr($row['start'],0,10)?> ( <?php echo substr($row['end'],11,8)?> - <?php echo substr($row['end'],11,8) ?> )" readonly>
+                        <label class="form-label">fecha/hora desde</label>
+                        <input type="text" class="form-control" name="turnoDesde" value="<?php echo $row['start']?>" >
                     </div>
-                    <!-- replicar hasta -->
+
+                    <!-- turno desde-->
                     <div class="col">
-                        <label class="form-label">replicar turno hasta</label>
-                        <!-- asignar parametro min a la fecha del turno seleccionado -->
-                        <input type="date" name="endDate" min="<?php echo $row['end']; ?>">
+                        <label class="form-label">fecha/hora hasta</label>
+                        <input type="text" class="form-control" name="turnoHasta" value="<?php echo $row['end']?>" >
                     </div>
+
                 </div>
 
                 <div>
-                <input type="submit" class="btn btn-warning" name="submit">replicar turno</button>
+                    <input type="submit" class="btn btn-warning" name="submit">modificar turno</button>
                     <a href="turnos.php" class="btn btn-danger">cancelar</a>
                 </div>
 

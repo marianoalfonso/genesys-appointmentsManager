@@ -15,20 +15,14 @@
 
 </head>
 <body>
-
+    <?php session_start() ?>
     <?php include 'assets/header.php' ?>
     <?php include 'turno.php' ?>
-
-
-
+    <?php include 'estadoTurno.php' ?>
 
     <div class="form-group">
         <br/>
-        <!-- <input type="submit" id="btn_inser" name="insert" class="btn btn-warning" value="agregar paciente"> -->
-            <!-- <button type="button" id="btn_inser" class="btn btn-warning" onclick="cargarPersona()">agregar pInfo.456.ANDISaciente</button> -->
-
-
-            <button id="btnNuevoTurno" type="button" class="btn btn-warning" data-toggle="modal" disabled>agregar turno</button>    
+            <a href="#modalEstadoTurnos" class="btn btn-warning" data-toggle="modal">cerrar</a>
         <br/><br/>
     </div>
 
@@ -42,6 +36,8 @@
                 <td>fecha/hora fin</td>
                 <td>cobertura</td>
                 <td>n_socio</td>
+                <td>estado</td>
+                <td>.</td>
                 <td>.</td>
                 <td>.</td>
                 <td>.</td>
@@ -52,8 +48,10 @@
         <?php
             require("connDB.php");
             $id_profesional = $_GET['p'];
+            $_SESSION['idProfesional'] = $id_profesional;
             $sql = "SELECT
-            eventos.id,personas.apellido,personas.nombre,eventos.start as inicio,eventos.end as fin,coberturas.nombre as cobertura,personas.c1numero as n_socio
+            eventos.id,personas.apellido,personas.nombre,eventos.start as inicio,eventos.end as fin,
+            coberturas.nombre as cobertura,personas.c1numero as n_socio, eventos.estado
                 FROM eventos
                 inner join personas ON
                 eventos.dni = personas.dni
@@ -71,18 +69,24 @@
                 $end = $fila['fin'];
                 $cobertura = $fila['cobertura'];
                 $n_socio = $fila['n_socio'];
+                $estado = $fila['estado'];
                 $i++; ?>
             <tr>
-                <td><FONT COLOR="red"><?php echo $id ?></td>
+                <td><font color="red"><?php echo $id ?></td>
                 <td><?php echo $apellido ?></td>
                 <td><?php echo $nombre ?></td>
                 <td><?php echo $start ?></td>
                 <td><?php echo $end ?></td>
                 <td><?php echo $cobertura ?></td>
                 <td><?php echo $n_socio ?></td>
-                <td><a href="pacientes.php?borrar=<?php echo $id ?>">modificar</a></td>
-                <td><a href="modulos/turnoReplicar.php?replicar=<?php echo $id ?>">replicar</a></td>
-                <td><a href="pacientes.php?borrar=<?php echo $id ?>">borrar</a></td>
+                <td><?php echo $estado ?></td>
+
+                <!-- <td><button id="btnCerrarTurno" type="button" class="btn btn-warning" data-toggle="modal">cerrar</button></td>  -->
+
+                <td><a href="modulos/turnoCerrar.php?id=<?php echo $id ?>"><img src="assets/icons/cerrar.png" alt="cerrar"></a></td>
+                <td><a href="modulos/turnoModificar.php?id=<?php echo $id ?>"><img src="assets/icons/modificar.png" alt="modificar"></a></td>
+                <td><a href="modulos/turnoReplicar.php?replicar=<?php echo $id ?>"><img src="assets/icons/replicar.png" alt="replicar"></a></td>
+                <td><a href="modulos/turnoBorrar.php?id=<?php echo $id ?>"><img src="assets/icons/borrar.png" alt="borrar"></a></td>
             </tr>
             <?php } ?>
 
@@ -108,6 +112,14 @@
                 }
             } );
         } );
+    </script>
+
+    <script>
+        $(document).ready(function(){
+        $("#btnCerrarTurno").click(function(){
+            $("#modalEstadoTurnos").modal('show');
+        });
+        });
     </script>
 
 </body>

@@ -20,8 +20,8 @@
 
     <?php
         session_start();
-        $_SESSION['accion'] = "replicar turno";
-        $id = $_GET['replicar'];
+        $_SESSION['accion'] = "borrar turno";
+        $id = $_GET['id'];
         require_once("../db/dbConnection.php");
         $mySql = new Connection();
         $conn = $mySql->getConnection();
@@ -53,16 +53,20 @@
                         <label class="form-label">turno asignado</label>
                         <input type="text" class="form-control" name="turnoDesde" value="<?php echo substr($row['start'],0,10)?> ( <?php echo substr($row['end'],11,8)?> - <?php echo substr($row['end'],11,8) ?> )" readonly>
                     </div>
-                    <!-- replicar hasta -->
-                    <div class="col">
-                        <label class="form-label">replicar turno hasta</label>
-                        <!-- asignar parametro min a la fecha del turno seleccionado -->
-                        <input type="date" name="endDate" min="<?php echo $row['end']; ?>">
+
+                    <!-- estado cierre -->
+                    <div>
+                        <label for="estado">estado de cierre del turno</label>
+                        <select name="estado" class="form-control">
+                            <option value="PRE">presente</option>
+                            <option value="AcA">ausente con aviso</option>
+                            <option value="AsA">ausente sin aviso</option>
+                        </select>
                     </div>
                 </div>
 
                 <div>
-                <input type="submit" class="btn btn-warning" name="submit">replicar turno</button>
+                <input type="submit" class="btn btn-warning" name="submit">borrar turno</button>
                     <a href="turnos.php" class="btn btn-danger">cancelar</a>
                 </div>
 
